@@ -18,4 +18,14 @@ public class CommandGenerator {
 
         return comando;
     }
+
+    public static void commandHelp() {
+        String s = "";
+
+        for (Command c : availableCommands) {
+            s += c.helpText();
+        }
+
+        System.out.println(s);
+    }
 }
