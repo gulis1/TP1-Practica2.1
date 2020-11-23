@@ -1,12 +1,12 @@
 package logic;
 
-import logic.gameObjects.Player;
-import logic.gameObjects.Vampiro;
+import logic.GameObjects.*;
 import view.GamePrinter;
+import view.IPrintable;
 
 import java.util.Random;
 
-public class Game {
+public class Game implements IPrintable {
 
     private Level level;
     private long seed;
@@ -15,6 +15,7 @@ public class Game {
     private Random rng;
     private int ciclo;
     private Player player;
+    private boolean gameOver;
 
     //contructor
     public Game(Long seed, Level level) {
@@ -22,79 +23,85 @@ public class Game {
         this.level = level;
         this.seed = seed;
         rng = new Random(seed);
-        printer =  new GamePrinter(this, this.level.getDimX(), this.level.getDimY());
-        board = new GameObjectBoard(rng, this);
+        board = new GameObjectBoard();
         player = new Player(rng);
+        gameOver = false;
 
     }
 
-    //todas la funciones que se tienen que hacer en cada ciclo.
     public void update() {
-        ciclo++;
         player.addMonedas();
-        board.move();
         board.attack();
-        board.summonVampires(level);
-    }
-    // resetea el juego e inicializa todos los objetos.
-    public void reset() {
-        this.ciclo = 0;
-        board = new GameObjectBoard(rng, this);
-        player = new Player(rng);
-    }
-    // saca por pantalla el tablero.
-    public String printGame() {
-
-        return this.printer.toString();
-    }
-    // comprueba si el juego ha finalizado( de manera no forzada).
-    public int isFinished() {
-        int code = 0;
-
-        if (Vampiro.llegaronAlFinal())
-            code = 1;
-
-        else if (board.getVampRestantes() == 0 && board.getVampTablero() == 0)
-            code = 2;
-
-        return code;
-
-    }
-    // intenta poner un slayer en la pocision "X" e "Y".
-    public int addSlayer(int x, int y) {
-        int error = 0;
-
-        if (!board.sePuedePonerSlayerEn(x,y))
-            error = 1;
-
-        else if (!player.restarMonedas(50))
-            error  = 2;
-
-        if (error == 0)
-            board.addSlayer(x,y);
-
-        return error;
-    }
-    // funciones getters.
-    public int getCiclo() {
-        return ciclo;
+        board.move();
+        board.removeDead();
+        Vampire.summonVampire();
+        ciclo++;
     }
 
-
-    public Player getPlayer() {
-        return player;
+    public IAttack getAttackableInPosition(int x, int y) {
+        return board.getAttackableInPosition(x,y);
     }
 
-    public long getSeed() {
-        return seed;
+    // wTF como se hace esto si no podemos devolver objetos tipo gameObject
+    public IAttack getObjectInPosition(int x, int y) {
+        return board.getAttackableInPosition(x,y);
     }
 
-    public GameObjectBoard getBoard() {
-        return board;
+    public void addObject(IAttack object) {
+        board.addObject(object);
+    }
+
+    public void removeObject(IAttack object) {
+        board.removeObject(object);
+    }
+
+    public boolean addSlayer(int x, int y) {
+        if (Slayer.AddSlayer(x, y, player.getMonedas())) {
+            player.restarMonedas(50);
+            return true;
+        }
+
+        else
+            return false;
+
+
+    }
+
+    public void end() {
+        gameOver = true;
+    }
+
+    public boolean isFinished() {
+        return gameOver;
+    }
+
+    public float nextFloat() {
+        return rng.nextFloat();
+    }
+
+    public double nextDouble() {
+        return rng.nextDouble();
+    }
+
+    public int nextInt(int x) {
+        return rng.nextInt(x);
     }
 
     public Level getLevel() {
         return level;
     }
 
+    @Override
+    public String getPositionToString(int x, int y) {
+        return board.getPositionToString(x,y);
+    }
+
+    @Override
+    public String getInfo() {
+        return String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(), Vampire.getOnBoard());
+    }
+
+    public boolean isPositionEmpty(int x, int y) {
+        return board.isPositionEmpty(x,y);
+    }
 }

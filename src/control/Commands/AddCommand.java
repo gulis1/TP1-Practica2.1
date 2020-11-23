@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             }
 
             else
-                return new AddCommand(x, y);
+                return new AddCommand(Integer.parseInt(commandWords[1]), Integer.parseInt(commandWords[2]));
 
         }
 

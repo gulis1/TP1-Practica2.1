@@ -5,6 +5,8 @@ import java.util.Scanner;
 import control.Commands.Command;
 import control.Commands.CommandGenerator;
 import logic.Game;
+import logic.GameObjects.GameObject;
+import view.GamePrinter;
 
 public class Controller {
 	
@@ -13,39 +15,43 @@ public class Controller {
 
     private Game game;
     private Scanner scanner;
+    private GamePrinter printer;
     
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
-	    	this.scanner = scanner;
+	    this.scanner = scanner;
+	    this.printer = new GamePrinter(game, game.getLevel().getDimX(), game.getLevel().getDimY());
+		GameObject.setGame(game);
     }
     
     public void  printGame() {
-   	 System.out.println(game);
+		System.out.println(printer.toString());;
    }
     
     public void run() {
-	    	boolean refreshDisplay = true;
+    	boolean refreshDisplay = true;
 
-	    while (game.isFinished() == 0){
+	    while (!game.isFinished()){
 	    		
-        		 if (refreshDisplay) printGame();
-        		 refreshDisplay = false;
+	    	if (refreshDisplay) printGame();
+	    	refreshDisplay = false;
         		 
-			  System.out.println(prompt);	
-			  String s = scanner.nextLine();
-			  String[] parameters = s.toLowerCase().trim().split(" ");
-			  System.out.println("[DEBUG] Executing: " + s);
-		      Command command = CommandGenerator.parse(parameters);
-		      if (command != null) { 
-		    	  		refreshDisplay = command.execute(game);
-		       } 
-		       else {
-		    	   		System.out.println("[ERROR]: "+ unknownCommandMsg);
-		       }
+	    	System.out.println(prompt);
+	    	String s = scanner.nextLine();
+	    	String[] parameters = s.toLowerCase().trim().split(" ");
+	    	System.out.println("[DEBUG] Executing: " + s);
+	    	Command command = CommandGenerator.parse(parameters);
+
+	    	if (command != null)
+	    		refreshDisplay = command.execute(game);
+
+	    	else
+	    		System.out.println("[ERROR]: "+ unknownCommandMsg);
+
 		}
-	    
-        	if (refreshDisplay) printGame();
-    		System.out.println ("[Game over] " + game.getWinnerMessage());
+
+			printGame();
+    		System.out.println ("[Game over] "); // + game.getWinnerMessage());
 
     }
 
