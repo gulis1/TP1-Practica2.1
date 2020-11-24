@@ -30,8 +30,7 @@ public class GameObjectBoard {
             object.move();
     }
 
-    public GameObject getAttackableInPosition (int x, int y) {
-
+    public GameObject getObjectInPosition(int x, int y) {
         GameObject object = null;
         int i = 0;
 
@@ -46,9 +45,16 @@ public class GameObjectBoard {
         return object;
     }
 
+    public IAttack getAttackableInPosition (int x, int y) {
+
+        return (IAttack) getObjectInPosition(x,y);
+
+    }
+
+
     public String getPositionToString(int x, int y) {
 
-        GameObject object = getAttackableInPosition(x, y);
+        GameObject object = getObjectInPosition(x, y);
 
         if (object == null)
             return " ";

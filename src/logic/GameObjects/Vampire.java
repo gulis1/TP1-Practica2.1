@@ -1,5 +1,7 @@
 package logic.GameObjects;
 
+import logic.Game;
+
 public class Vampire extends GameObject{
 
     private static int onBoard = 0;
@@ -8,20 +10,20 @@ public class Vampire extends GameObject{
 
     private boolean shouldMove = false;
 
-    public Vampire(int x, int y, int hp) {
-        super(x,y,hp);
+    public Vampire(int x, int y, int hp, Game game) {
+        super(x,y,hp,game);
         letra = "V";
     }
 
-    public static void summonVampire() {
+    public static void summonVampire(Game game) {
 
         if (total < game.getLevel().numVampirosLv() && game.nextDouble() < game.getLevel().getFrecuencia()) {
 
             int x = game.getLevel().getDimX() - 1;
             int y = game.nextInt(game.getLevel().getDimY());
 
-            if (game.getObjectInPosition(x, y) == null) {
-                game.addObject(new Vampire(x, y, HP));
+            if (game.getAttackableInPosition(x, y) == null) {
+                game.addObject(new Vampire(x, y, HP, game));
                 total++;
                 onBoard++;
             }
@@ -68,7 +70,7 @@ public class Vampire extends GameObject{
             game.end();
     }
 
-    public static int getRemaining( ) {
+    public static int getRemaining(Game game) {
         return game.getLevel().numVampirosLv() - total;
     }
 

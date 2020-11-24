@@ -1,11 +1,13 @@
 package logic.GameObjects;
 
+import logic.Game;
+
 public class Slayer extends GameObject {
 
     public static final int HP = 3;
 
-    public Slayer(int x, int y, int vida) {
-        super(x,y,vida);
+    public Slayer(int x, int y, int vida, Game game) {
+        super(x,y,vida,game);
         letra = "S";
     }
 
@@ -27,10 +29,6 @@ public class Slayer extends GameObject {
         }
     }
 
-    public void move() {
-
-    }
-
     public boolean receiveVampireAttack(int damage) {
 
         if (vida > 0) {
@@ -42,12 +40,12 @@ public class Slayer extends GameObject {
             return false;
     }
 
-    public static boolean AddSlayer(int x, int y, int monedas) {
+    public static boolean AddSlayer(Game game, int x, int y, int monedas) {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
         if (monedas >= 50 && x>= 0 && x < dimX && y>=0 && y<dimY &&game.isPositionEmpty(x,y))  {
-            game.addObject(new Slayer(x,y,3));
+            game.addObject(new Slayer(x,y,3, game));
             return true;
         }
 
@@ -56,4 +54,7 @@ public class Slayer extends GameObject {
 
     }
 
+    public void move(){
+
+    };
 }

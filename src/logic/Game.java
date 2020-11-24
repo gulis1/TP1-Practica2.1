@@ -34,16 +34,11 @@ public class Game implements IPrintable {
         board.attack();
         board.move();
         board.removeDead();
-        Vampire.summonVampire();
+        Vampire.summonVampire(this);
         ciclo++;
     }
 
     public IAttack getAttackableInPosition(int x, int y) {
-        return board.getAttackableInPosition(x,y);
-    }
-
-    // wTF como se hace esto si no podemos devolver objetos tipo gameObject
-    public IAttack getObjectInPosition(int x, int y) {
         return board.getAttackableInPosition(x,y);
     }
 
@@ -56,7 +51,7 @@ public class Game implements IPrintable {
     }
 
     public boolean addSlayer(int x, int y) {
-        if (Slayer.AddSlayer(x, y, player.getMonedas())) {
+        if (Slayer.AddSlayer(this, x, y, player.getMonedas())) {
             player.restarMonedas(50);
             return true;
         }
@@ -98,7 +93,7 @@ public class Game implements IPrintable {
 
     @Override
     public String getInfo() {
-        return String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(), Vampire.getOnBoard());
+        return String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());
     }
 
     public boolean isPositionEmpty(int x, int y) {

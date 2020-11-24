@@ -21,7 +21,6 @@ public class Controller {
 	    this.game = game;
 	    this.scanner = scanner;
 	    this.printer = new GamePrinter(game, game.getLevel().getDimX(), game.getLevel().getDimY());
-		GameObject.setGame(game);
     }
     
     public void  printGame() {
