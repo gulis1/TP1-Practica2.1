@@ -7,12 +7,12 @@ public class AddCommand extends Command {
     private int x, y;
 
     public AddCommand() {
-        super("add", "a", "Añade un nuevo slayer", "add x y");
+        super("add", "a", "[a]dd <x> <y>", "add a slayer in position x, y");
     }
 
     // Constructor utilizado para devolver un objeto al CommandGenerator en caso de que coincida con el comando que se introdujo
     public AddCommand(int x, int y) {
-        super("add", "a", "Añade un nuevo slayer", "add x y");
+        this();
         this.x = x;
         this.y = y;
     }

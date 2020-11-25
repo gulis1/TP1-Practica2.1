@@ -2,22 +2,20 @@ package control.Commands;
 
 import logic.Game;
 
-public class HelpCommand extends Command {
+public class ResetCommand extends Command {
 
-    public HelpCommand() {
-        super("help", "h", "[h]elp", "show this help");
+    public ResetCommand() {
+        super("reset", "r", "[r]eset", "reset game");
     }
 
+    @Override
     public boolean execute(Game game) {
-
-        CommandGenerator.commandHelp();
-
-        return false;
+        game.reset();
+        return true;
     }
 
     @Override
     public Command parse(String[] commandWords) {
-
         return parseNoParamsCommand(commandWords);
     }
 }

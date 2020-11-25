@@ -5,7 +5,12 @@ import logic.Game;
 public class UpdateCommand extends Command {
 
     public UpdateCommand() {
-        super("update", "", "Pasa al siguiente turno", "update");
+        super("none", "n", "[n]one | []", "update");
+    }
+
+    @Override
+    protected boolean matchCommandName(String name) {
+        return super.matchCommandName(name) || name.equals("");
     }
 
     public boolean execute(Game game) {

@@ -5,7 +5,9 @@ public class CommandGenerator {
     private static Command[] availableCommands = {
             new AddCommand(),
             new HelpCommand(),
-            new UpdateCommand()
+            new UpdateCommand(),
+            new ExitCommand(),
+            new ResetCommand()
     };
 
 

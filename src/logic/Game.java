@@ -16,6 +16,7 @@ public class Game implements IPrintable {
     private int ciclo;
     private Player player;
     private boolean gameOver;
+    private String winnerMsg;
 
     //contructor
     public Game(Long seed, Level level) {
@@ -38,16 +39,20 @@ public class Game implements IPrintable {
         ciclo++;
     }
 
+    public void reset() {
+        this.ciclo = 0;
+        rng = new Random(seed);
+        player = new Player(rng);
+        board = new GameObjectBoard();
+        Vampire.resetSpawned();
+    }
+
     public IAttack getAttackableInPosition(int x, int y) {
         return board.getAttackableInPosition(x,y);
     }
 
     public void addObject(IAttack object) {
         board.addObject(object);
-    }
-
-    public void removeObject(IAttack object) {
-        board.removeObject(object);
     }
 
     public boolean addSlayer(int x, int y) {
@@ -59,7 +64,6 @@ public class Game implements IPrintable {
         else
             return false;
 
-
     }
 
     public void end() {
@@ -68,10 +72,6 @@ public class Game implements IPrintable {
 
     public boolean isFinished() {
         return gameOver;
-    }
-
-    public float nextFloat() {
-        return rng.nextFloat();
     }
 
     public double nextDouble() {
@@ -84,6 +84,14 @@ public class Game implements IPrintable {
 
     public Level getLevel() {
         return level;
+    }
+
+    public void setWinnerMsg(String x) {
+        winnerMsg = x;
+    }
+
+    public String getWinnerMsg() {
+        return winnerMsg;
     }
 
     @Override

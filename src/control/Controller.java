@@ -50,7 +50,7 @@ public class Controller {
 		}
 
 			printGame();
-    		System.out.println ("[Game over] "); // + game.getWinnerMessage());
+    		System.out.println ("[Game over] " + game.getWinnerMsg());
 
     }
 

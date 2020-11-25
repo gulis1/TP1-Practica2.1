@@ -15,6 +15,12 @@ public class Vampire extends GameObject{
         letra = "V";
     }
 
+    public static void resetSpawned() {
+        onBoard = 0;
+        total = 0;
+
+    }
+
     public static void summonVampire(Game game) {
 
         if (total < game.getLevel().numVampirosLv() && game.nextDouble() < game.getLevel().getFrecuencia()) {
@@ -44,8 +50,15 @@ public class Vampire extends GameObject{
         if (vida > 0) {
             vida -= damage;
 
-            if (vida <= 0)
+            if (vida <= 0) {
                 onBoard--;
+
+                if (onBoard == 0 && total == game.getLevel().numVampirosLv()) {
+                    game.end();
+                    game.setWinnerMsg("Player wins");
+                }
+            }
+
 
             return true;
         }
@@ -66,8 +79,11 @@ public class Vampire extends GameObject{
             shouldMove = true;
 
 
-        if (x==0)
+        if (x==0) {
             game.end();
+            game.setWinnerMsg("Vampires win!");
+        }
+
     }
 
     public static int getRemaining(Game game) {
