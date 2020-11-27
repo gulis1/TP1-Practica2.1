@@ -57,14 +57,13 @@ public class Game implements IPrintable {
         board.addObject(object);
     }
 
-    public boolean addSlayer(int x, int y) {
-        if (Slayer.AddSlayer(this, x, y, player.getMonedas())) {
-            player.restarMonedas(50);
-            return true;
-        }
+    public String addSlayer(int x, int y) {
+        String error = Slayer.AddSlayer(this, x, y, player.getMonedas());
 
-        else
-            return false;
+        if (error == null)
+            player.restarMonedas(50);
+
+        return error;
 
     }
 

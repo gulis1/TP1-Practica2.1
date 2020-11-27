@@ -19,7 +19,15 @@ public class AddCommand extends Command {
 
     public boolean execute(Game game) {
 
-        return game.addSlayer(x, y);
+        String error = game.addSlayer(x, y);
+
+        if (error != null) {
+            System.out.println(error);
+            return false;
+        }
+
+
+        return true;
         // Da error porque hay cambiar la forma en que saltan los mensajes de error
     }
 

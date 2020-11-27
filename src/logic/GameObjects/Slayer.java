@@ -42,19 +42,21 @@ public class Slayer extends GameObject {
             return false;
     }
 
-    public static boolean AddSlayer(Game game, int x, int y, int monedas) {
+    public static String AddSlayer(Game game, int x, int y, int monedas) {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
         if (x >= 0 && x < dimX && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
             if (monedas >= 50)
                 game.addObject(new Slayer(x, y, 3, game));
+            else
+                return ("Not enough coins");
 
-            return true;
+            return null;
         }
 
         else
-            return false;
+            return "Invalid position";
 
 
     }
