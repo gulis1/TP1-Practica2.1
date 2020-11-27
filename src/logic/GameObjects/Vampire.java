@@ -2,12 +2,13 @@ package logic.GameObjects;
 
 import logic.Game;
 
+import java.util.Random;
+
 public class Vampire extends GameObject{
 
     private static int onBoard = 0;
     private static int total = 0;
-    public static final int HP = 5;
-
+    private static final int HP = 5;
     private boolean shouldMove = false;
 
     public Vampire(int x, int y, int hp, Game game) {
@@ -23,10 +24,10 @@ public class Vampire extends GameObject{
 
     public static void summonVampire(Game game) {
 
-        if (total < game.getLevel().numVampirosLv() && game.nextDouble() < game.getLevel().getFrecuencia()) {
+        if (total < game.getLevel().numVampirosLv() && game.getRng().nextDouble() < game.getLevel().getFrecuencia()) {
 
             int x = game.getLevel().getDimX() - 1;
-            int y = game.nextInt(game.getLevel().getDimY());
+            int y = game.getRng().nextInt(game.getLevel().getDimY());
 
             if (game.getAttackableInPosition(x, y) == null) {
                 game.addObject(new Vampire(x, y, HP, game));
@@ -79,7 +80,7 @@ public class Vampire extends GameObject{
             shouldMove = true;
 
 
-        if (x==0) {
+        if (x==-1) {
             game.end();
             game.setWinnerMsg("Vampires win!");
         }

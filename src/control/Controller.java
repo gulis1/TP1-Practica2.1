@@ -16,16 +16,15 @@ public class Controller {
     private Game game;
     private Scanner scanner;
     private GamePrinter printer;
-    
+
     public Controller(Game game, Scanner scanner) {
 	    this.game = game;
 	    this.scanner = scanner;
-	    this.printer = new GamePrinter(game, game.getLevel().getDimX(), game.getLevel().getDimY());
     }
     
     public void  printGame() {
-		System.out.println(printer.toString());;
-   }
+		System.out.println(game);
+    }
     
     public void run() {
     	boolean refreshDisplay = true;

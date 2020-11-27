@@ -18,6 +18,7 @@ public class AddCommand extends Command {
     }
 
     public boolean execute(Game game) {
+
         return game.addSlayer(x, y);
         // Da error porque hay cambiar la forma en que saltan los mensajes de error
     }
@@ -31,8 +32,18 @@ public class AddCommand extends Command {
                 return null;
             }
 
-            else
-                return new AddCommand(Integer.parseInt(commandWords[1]), Integer.parseInt(commandWords[2]));
+            else {
+                try {
+                    return new AddCommand(Integer.parseInt(commandWords[1]), Integer.parseInt(commandWords[2]));
+                }
+
+                catch(NumberFormatException e){
+                    return null;
+                }
+
+            }
+
+
 
         }
 

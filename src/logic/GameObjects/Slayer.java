@@ -2,6 +2,8 @@ package logic.GameObjects;
 
 import logic.Game;
 
+import java.util.Random;
+
 public class Slayer extends GameObject {
 
     public static final int HP = 3;
@@ -44,13 +46,16 @@ public class Slayer extends GameObject {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
-        if (monedas >= 50 && x>= 0 && x < dimX && y>=0 && y<dimY &&game.isPositionEmpty(x,y))  {
-            game.addObject(new Slayer(x,y,3, game));
+        if (x >= 0 && x < dimX && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
+            if (monedas >= 50)
+                game.addObject(new Slayer(x, y, 3, game));
+
             return true;
         }
 
         else
             return false;
+
 
     }
 

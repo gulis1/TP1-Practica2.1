@@ -2,6 +2,8 @@ package logic.GameObjects;
 
 import logic.Game;
 
+import java.util.Random;
+
 public abstract class GameObject implements IAttack {
     protected Game game;
     protected int vida, x, y;

@@ -10,13 +10,14 @@ public class Game implements IPrintable {
 
     private Level level;
     private long seed;
-    private GamePrinter printer;
     private GameObjectBoard board;
     private Random rng;
     private int ciclo;
     private Player player;
     private boolean gameOver;
     private String winnerMsg;
+
+    private GamePrinter printer;
 
     //contructor
     public Game(Long seed, Level level) {
@@ -26,6 +27,7 @@ public class Game implements IPrintable {
         rng = new Random(seed);
         board = new GameObjectBoard();
         player = new Player(rng);
+        printer = new GamePrinter(this, level.getDimX(), level.getDimY());
         gameOver = false;
 
     }
@@ -74,14 +76,6 @@ public class Game implements IPrintable {
         return gameOver;
     }
 
-    public double nextDouble() {
-        return rng.nextDouble();
-    }
-
-    public int nextInt(int x) {
-        return rng.nextInt(x);
-    }
-
     public Level getLevel() {
         return level;
     }
@@ -92,6 +86,10 @@ public class Game implements IPrintable {
 
     public String getWinnerMsg() {
         return winnerMsg;
+    }
+
+    public Random getRng() {
+        return this.rng;
     }
 
     @Override
@@ -106,5 +104,9 @@ public class Game implements IPrintable {
 
     public boolean isPositionEmpty(int x, int y) {
         return board.isPositionEmpty(x,y);
+    }
+
+    public String toString() {
+        return printer.toString();
     }
 }
