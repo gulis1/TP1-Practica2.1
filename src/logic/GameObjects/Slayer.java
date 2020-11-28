@@ -16,14 +16,15 @@ public class Slayer extends GameObject {
     public void attack() {
         IAttack other = null;
         int i = x+1;
+        boolean hitSomeone = false;
 
-        if (isAlive () ) {
+        if (isAlive ()) {
 
-            while(other == null && i < game.getLevel().getDimX()) {
+            while(!hitSomeone &&  i < game.getLevel().getDimX()) {
 
                 other = game.getAttackableInPosition(i, y);
                 if (other != null)
-                    other.receiveSlayerAttack(1);
+                    hitSomeone = other.receiveSlayerAttack(1);
 
                 i++;
 
@@ -50,7 +51,7 @@ public class Slayer extends GameObject {
             if (monedas >= 50)
                 game.addObject(new Slayer(x, y, 3, game));
             else
-                return ("Not enough coins");
+                return "Not enough coins";
 
             return null;
         }

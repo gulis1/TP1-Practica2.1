@@ -26,9 +26,8 @@ public class AddCommand extends Command {
             return false;
         }
 
-
+        game.update();
         return true;
-        // Da error porque hay cambiar la forma en que saltan los mensajes de error
     }
 
     public Command parse(String[] commandWords) {

@@ -38,6 +38,7 @@ public class Game implements IPrintable {
         board.move();
         board.removeDead();
         Vampire.summonVampire(this);
+        if (!isFinished())
         ciclo++;
     }
 

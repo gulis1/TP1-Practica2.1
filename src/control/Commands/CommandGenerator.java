@@ -5,9 +5,10 @@ public class CommandGenerator {
     private static Command[] availableCommands = {
             new AddCommand(),
             new HelpCommand(),
-            new UpdateCommand(),
+            new ResetCommand(),
             new ExitCommand(),
-            new ResetCommand()
+            new UpdateCommand(),
+
     };
 
 
@@ -24,7 +25,7 @@ public class CommandGenerator {
     }
 
     public static void commandHelp() {
-        String s = "";
+        String s = "Available commands:\n";
 
         for (Command c : availableCommands) {
             s += c.helpText();

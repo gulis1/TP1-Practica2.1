@@ -5,7 +5,7 @@ import logic.Game;
 public class UpdateCommand extends Command {
 
     public UpdateCommand() {
-        super("none", "n", "[n]one | []", "update");
+        super("nonexx", "n", "[n]one | []", "update");
     }
 
     @Override
