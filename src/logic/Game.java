@@ -32,6 +32,7 @@ public class Game implements IPrintable {
 
     }
 
+    //metodo que actualiza el tablero del juego.
     public void update() {
         player.addMonedas();
         board.attack();
@@ -42,6 +43,7 @@ public class Game implements IPrintable {
         ciclo++;
     }
 
+    //metodo resetea el juego.
     public void reset() {
         this.ciclo = 0;
         rng = new Random(seed);
@@ -50,14 +52,17 @@ public class Game implements IPrintable {
         Vampire.resetSpawned();
     }
 
+    //devuelve si hay un objeto en esa posicion.
     public IAttack getAttackableInPosition(int x, int y) {
         return board.getAttackableInPosition(x,y);
     }
 
+    //añade un objeto al arraylist.
     public void addObject(IAttack object) {
         board.addObject(object);
     }
 
+    //devuele el string(que detalla el error si existe),si no le resta las monedas al player indicando que se pudo añadir el slayer.
     public String addSlayer(int x, int y) {
         String error = Slayer.AddSlayer(this, x, y, player.getMonedas());
 
@@ -68,14 +73,17 @@ public class Game implements IPrintable {
 
     }
 
+    //sobre escribe el gameOver a true, haciendo que el juego termine.
     public void end() {
         gameOver = true;
     }
 
+    //devuelve la variable gameover(es la que controla el final del juego).
     public boolean isFinished() {
         return gameOver;
     }
 
+    //comprueba si la posicion X e Y esta vacia (si no hay ningun objeto).
     public boolean isPositionEmpty(int x, int y) {
         return board.isPositionEmpty(x,y);
     }
@@ -85,27 +93,31 @@ public class Game implements IPrintable {
         return printer.toString();
     }
 
+    //funcion getter del level.
     public Level getLevel() {
         return level;
     }
 
-    public void setWinnerMsg(String x) {
-        winnerMsg = x;
-    }
+    //sobre escribe el mensaje final segun como se alla acabado el juego.
+    public void setWinnerMsg(String x) { winnerMsg = x; }
 
+    //devuelve el mensaje final del juego.
     public String getWinnerMsg() {
         return winnerMsg;
     }
 
+    //funcion getter de la variable rng.
     public Random getRng() {
         return this.rng;
     }
 
+    //devuelve la posicion del objeto para gameprinter lo imprima.
     @Override
     public String getPositionToString(int x, int y) {
         return board.getPositionToString(x,y);
     }
 
+    //devuelve la informacion del juego para que lo imprima el gameprinter.
     @Override
     public String getInfo() {
         return String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());

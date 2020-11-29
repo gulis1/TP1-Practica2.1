@@ -9,6 +9,7 @@ public class ExitCommand extends Command{
         super("exit", "e", "[e]xit", "exit game");
     }
 
+
     @Override
     public boolean execute(Game game) {
         game.end();

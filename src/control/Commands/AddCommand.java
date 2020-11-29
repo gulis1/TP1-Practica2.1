@@ -17,6 +17,7 @@ public class AddCommand extends Command {
         this.y = y;
     }
 
+    //metodo que ejecuta el comando add (vease añade el vampiro), si da al algun error lo imprime,devuelve true o false si se pudo poner el slayer.
     public boolean execute(Game game) {
 
         String error = game.addSlayer(x, y);
@@ -30,6 +31,7 @@ public class AddCommand extends Command {
         return true;
     }
 
+    //lee el comando y verifica si no hay ningun fallo en el.
     public Command parse(String[] commandWords) {
 
         if (matchCommandName(commandWords[0])) {

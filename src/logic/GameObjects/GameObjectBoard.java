@@ -29,6 +29,7 @@ public class GameObjectBoard {
             object.move();
     }
 
+    //recorre el arraylist en busca si hay un objeto en la posicion X e Y.
     private GameObject getObjectInPosition(int x, int y) {
         GameObject object = null;
         int i = 0;
@@ -44,6 +45,7 @@ public class GameObjectBoard {
         return object;
     }
 
+    // devuelve el obejto que haya en esa posicion, si no hay ninguno devuelve null.
     public IAttack getAttackableInPosition (int x, int y) {
 
         return (IAttack) getObjectInPosition(x,y);

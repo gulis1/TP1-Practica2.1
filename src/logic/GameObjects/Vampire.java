@@ -38,6 +38,7 @@ public class Vampire extends GameObject{
         }
     }
 
+    //comprueba si el vampiro esta vivo, luego se verifica si hay en objeto en la posicion proxima al vampiro (x-1) y si hay un slayer(object!=null) recive le daño.
     public void attack() {
         if (isAlive () ) {
             IAttack other = game.getAttackableInPosition(x - 1, y);
@@ -70,6 +71,7 @@ public class Vampire extends GameObject{
     }
 
     // Mueve el vampiro una casilla si esta se encuentra vacía. También se realiza comprueba si algún vampiro ha llegado al final del tablero.
+    @Override
     public void move() {
 
         if (shouldMove) {
