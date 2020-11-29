@@ -12,25 +12,24 @@ public class GameObjectBoard {
         gameobjects = new ArrayList<GameObject>();
     }
 
+    // Añade un GameObject a la lista.
     public void addObject(IAttack object) {
         gameobjects.add((GameObject)object);
     }
 
-    public void removeObject(IAttack object) {
-        gameobjects.remove((GameObject)object);
-    }
-
+    // Invoca el metodo attack de todos los objetos de la lista.
     public void attack() {
         for (GameObject object : gameobjects)
             object.attack();
     }
 
+    // Invoca el metodo move de todos los objetos de la lista.
     public void move() {
         for (GameObject object : gameobjects)
             object.move();
     }
 
-    public GameObject getObjectInPosition(int x, int y) {
+    private GameObject getObjectInPosition(int x, int y) {
         GameObject object = null;
         int i = 0;
 
@@ -51,7 +50,7 @@ public class GameObjectBoard {
 
     }
 
-
+    // Devuelve un string que representa una posición (x,y) en el tablero.
     public String getPositionToString(int x, int y) {
 
         GameObject object = getObjectInPosition(x, y);
@@ -62,10 +61,12 @@ public class GameObjectBoard {
             return object.getString();
     }
 
+    // Comprueba si una posición (x,y) esta vacía
     public boolean isPositionEmpty(int x, int y) {
         return getAttackableInPosition(x,y) == null;
     }
 
+    // Elimina todos los objetos muertos de la lista.
     public void removeDead() {
         gameobjects.removeIf(x -> !x.isAlive());
     }

@@ -16,12 +16,13 @@ public class Vampire extends GameObject{
         letra = "V";
     }
 
+    // Resetea el numero de vampiros que han salido.
     public static void resetSpawned() {
         onBoard = 0;
         total = 0;
-
     }
 
+    // Hace aparecer un vampiro en el game (Si el Random decide que debe salir)
     public static void summonVampire(Game game) {
 
         if (total < game.getLevel().numVampirosLv() && game.getRng().nextDouble() < game.getLevel().getFrecuencia()) {
@@ -45,7 +46,7 @@ public class Vampire extends GameObject{
         }
     }
 
-
+    // Recibe un ataque del slayer y mata al vampiro si su vida llega a 0. Aqui tambien se realiza la comprobación de que hayan muerto todos los vampiros
     public boolean receiveSlayerAttack(int damage) {
 
         if (vida > 0) {
@@ -68,6 +69,7 @@ public class Vampire extends GameObject{
             return false;
     }
 
+    // Mueve el vampiro una casilla si esta se encuentra vacía. También se realiza comprueba si algún vampiro ha llegado al final del tablero.
     public void move() {
 
         if (shouldMove) {
@@ -87,10 +89,12 @@ public class Vampire extends GameObject{
 
     }
 
+    // Devuelve la cantidad de vampiros que quedan por salir.
     public static int getRemaining(Game game) {
         return game.getLevel().numVampirosLv() - total;
     }
 
+    // Devuelve la cantidad de vampiros que hay en el tablero.
     public static int getOnBoard( ) {
         return onBoard;
     }

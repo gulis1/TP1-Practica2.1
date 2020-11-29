@@ -76,6 +76,15 @@ public class Game implements IPrintable {
         return gameOver;
     }
 
+    public boolean isPositionEmpty(int x, int y) {
+        return board.isPositionEmpty(x,y);
+    }
+
+    // Devuelve un string que representa el estado actual del game.
+    public String toString() {
+        return printer.toString();
+    }
+
     public Level getLevel() {
         return level;
     }
@@ -100,13 +109,5 @@ public class Game implements IPrintable {
     @Override
     public String getInfo() {
         return String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());
-    }
-
-    public boolean isPositionEmpty(int x, int y) {
-        return board.isPositionEmpty(x,y);
-    }
-
-    public String toString() {
-        return printer.toString();
     }
 }

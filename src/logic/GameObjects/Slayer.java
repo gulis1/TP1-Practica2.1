@@ -43,6 +43,7 @@ public class Slayer extends GameObject {
             return false;
     }
 
+    // Intenta añadir un slayer a la partida. En caso de no poderse, devuelve un mensaje de error indicando el motivo por el cual no se pudo.
     public static String AddSlayer(Game game, int x, int y, int monedas) {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
