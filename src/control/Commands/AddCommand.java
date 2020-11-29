@@ -49,14 +49,9 @@ public class AddCommand extends Command {
                 catch(NumberFormatException e){
                     return null;
                 }
-
             }
-
-
-
         }
 
         return null;
-
     }
 }
