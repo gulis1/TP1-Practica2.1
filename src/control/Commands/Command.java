@@ -18,16 +18,16 @@ public abstract class Command {
 	    this.details = details;
 	    this.help = help;
 	  }
-	  
-	  public abstract boolean execute(Game game);
-	  
-	  public abstract Command parse(String[] commandWords);
-	  
+
+
+
+	  //devuelve true si el comando introducido es igual al shortcut o al name de algun comando.
 	  protected boolean matchCommandName(String name) {
 		    return this.shortcut.equalsIgnoreCase(name) || 
 		        this.name.equalsIgnoreCase(name);
 	  }
-	  
+
+	  //devuelve el comando si machCommandName es igual a true.
 	  protected Command parseNoParamsCommand(String[] words) {
 	
 			if (matchCommandName(words[0])) {
@@ -40,8 +40,14 @@ public abstract class Command {
 			
 			return null;
 	  }
-	  
+
+	  //devuelve en un string el details y el help de un comando.
 	  public String helpText(){
 	    return details + ": " + help + "\n";
 	  }
+
+	//metodos de abstractos.
+	public abstract boolean execute(Game game);
+
+	public abstract Command parse(String[] commandWords);
 }

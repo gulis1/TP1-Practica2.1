@@ -11,7 +11,7 @@ public class CommandGenerator {
 
     };
 
-
+    //retorna el comando si los comandos escritos en consola son correctos.
     public static Command parse(String[] commandWords) {
         Command comando = null;
         int i = 0;
@@ -24,6 +24,7 @@ public class CommandGenerator {
         return comando;
     }
 
+    //imprime la lista de ayuda de toda la lista de comandos.
     public static void commandHelp() {
         String s = "Available commands:\n";
 

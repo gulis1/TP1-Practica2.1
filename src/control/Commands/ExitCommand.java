@@ -9,7 +9,7 @@ public class ExitCommand extends Command{
         super("exit", "e", "[e]xit", "exit game");
     }
 
-
+    //ejecuta el metodo end() del game.
     @Override
     public boolean execute(Game game) {
         game.end();
@@ -18,8 +18,10 @@ public class ExitCommand extends Command{
         return true;
     }
 
+    //devuelve el comando si el matchcomand devuelve el true.
     @Override
     public Command parse(String[] commandWords) {
         return parseNoParamsCommand(commandWords);
+
     }
 }

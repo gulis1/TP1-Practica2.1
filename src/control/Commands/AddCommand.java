@@ -31,7 +31,7 @@ public class AddCommand extends Command {
         return true;
     }
 
-    //lee el comando y verifica si no hay ningun fallo en el.
+    // verifica si no hay ningun fallo en el add (intentando crea un comando add y si este no recoje ninguna exepcion devuelve el comando).
     public Command parse(String[] commandWords) {
 
         if (matchCommandName(commandWords[0])) {
