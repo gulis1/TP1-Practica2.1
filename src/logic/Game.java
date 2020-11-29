@@ -35,9 +35,7 @@ public class Game implements IPrintable {
     //metodo que actualiza el tablero del juego.
     public void update() {
         player.addMonedas();
-        board.attack();
-        board.move();
-        board.removeDead();
+        board.update();
         Vampire.summonVampire(this);
         if (!isFinished())
         ciclo++;
