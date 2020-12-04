@@ -36,7 +36,9 @@ public class Game implements IPrintable {
     public void update() {
         player.addMonedas();
         board.update();
-        Vampire.summonVampire(this);
+        Vampire.summon(this);
+        Dracula.summon(this);
+
         if (!isFinished())
         ciclo++;
     }
@@ -49,6 +51,13 @@ public class Game implements IPrintable {
         board = new GameObjectBoard();
         Vampire.resetSpawned();
     }
+
+    //metodo que añade 1000 monedas al player.
+    public void superCoins(){
+         player.addMonedaMil();
+    }
+
+
 
     //devuelve si hay un objeto en esa posicion.
     public IAttack getAttackableInPosition(int x, int y) {
@@ -118,6 +127,12 @@ public class Game implements IPrintable {
     //devuelve la informacion del juego para que lo imprima el gameprinter.
     @Override
     public String getInfo() {
-        return String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());
+        String x=String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());;
+
+        if(Dracula.isDraculaAlive())
+            x+="Dracula is Alive\n";
+        return x;
     }
+
+
 }

@@ -8,6 +8,7 @@ public class CommandGenerator {
             new ResetCommand(),
             new ExitCommand(),
             new UpdateCommand(),
+            new SuperCoinsCommand(),
 
     };
 

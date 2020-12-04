@@ -4,12 +4,12 @@ import logic.Game;
 
 import java.util.Random;
 
-public class Vampire extends GameObject{
+public class Vampire extends GameObject {
 
-    private static int onBoard = 0;
-    private static int total = 0;
-    private static final int HP = 5;
-    private boolean shouldMove = false;
+    protected static int onBoard = 0;
+    protected static int total = 0;
+    protected static final int HP = 5;
+    protected boolean shouldMove = false;
 
     public Vampire(int x, int y, int hp, Game game) {
         super(x,y,hp,game);
@@ -23,7 +23,7 @@ public class Vampire extends GameObject{
     }
 
     // Hace aparecer un vampiro en el game (Si el Random decide que debe salir)
-    public static void summonVampire(Game game) {
+    public static void summon(Game game) {
 
         if (total < game.getLevel().numVampirosLv() && game.getRng().nextDouble() < game.getLevel().getFrecuencia()) {
 
