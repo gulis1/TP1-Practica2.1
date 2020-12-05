@@ -39,8 +39,9 @@ public class Game implements IPrintable {
         Vampire.summon(this);
         Dracula.summon(this);
         ExplosiveVampire.summon(this);
+
         if (!isFinished())
-        ciclo++;
+            ciclo++;
     }
 
     //metodo resetea el juego.
@@ -52,12 +53,32 @@ public class Game implements IPrintable {
         Vampire.resetSpawned();
     }
 
+    public boolean garlicPush() {
+
+        if (player.getMonedas()>= 10) {
+            board.garlicPush();
+            player.restarMonedas(10);
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    public boolean lightFlash(){
+
+         if (player.getMonedas() >= 50) {
+            board.lightFlash();
+            player.restarMonedas(50);
+            return true;
+        }
+        else
+            return false;
+    }
     //metodo que añade 1000 monedas al player.
     public void superCoins(){
          player.addMonedaMil();
     }
-
-
 
     //devuelve si hay un objeto en esa posicion.
     public IAttack getAttackableInPosition(int x, int y) {

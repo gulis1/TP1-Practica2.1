@@ -9,6 +9,8 @@ public class CommandGenerator {
             new ExitCommand(),
             new UpdateCommand(),
             new SuperCoinsCommand(),
+            new GarlicPushCommand(),
+            new LightCommand(),
 
     };
 

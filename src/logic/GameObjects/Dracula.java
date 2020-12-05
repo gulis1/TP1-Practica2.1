@@ -2,6 +2,8 @@ package logic.GameObjects;
 
 import logic.Game;
 
+import java.lang.annotation.Documented;
+
 public class Dracula extends Vampire {
 
     private static boolean draculaAlive = false;
@@ -43,7 +45,7 @@ public class Dracula extends Vampire {
         }
     }
 
-    @Override
+
     public boolean receiveSlayerAttack(int damage) {
         boolean x = super.receiveSlayerAttack(1);
 
@@ -52,6 +54,19 @@ public class Dracula extends Vampire {
 
         return x;
     }
+
+    @Override
+    public boolean receiveGarlicPush() {
+        boolean x = super.receiveGarlicPush();
+
+        if (!isAlive())
+            draculaAlive  = false;
+
+        return x;
+    }
+
+    @Override
+    public boolean receiveLightFlash() { return false; }
 
 
 }

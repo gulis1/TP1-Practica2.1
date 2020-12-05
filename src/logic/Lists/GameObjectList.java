@@ -1,5 +1,6 @@
 package logic.Lists;
 
+import logic.Game;
 import logic.GameObjects.GameObject;
 import logic.GameObjects.IAttack;
 
@@ -49,5 +50,15 @@ public class GameObjectList {
     // Elimina todos los objetos muertos de la lista.
     public void removeDead() {
         gameobjects.removeIf(x -> !x.isAlive());
+    }
+
+    public void garlicPush() {
+        for (GameObject object : gameobjects)
+            object.receiveGarlicPush();
+    }
+    public void light(){
+        for(GameObject object : gameobjects){
+            object.receiveLightFlash();
+        }
     }
 }

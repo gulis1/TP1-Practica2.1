@@ -30,10 +30,9 @@ public class Player {
 
     //añade 1000 monedas al jugador.
     public void addMonedaMil(){
-
         monedas+=1000;
-
     }
+
     // funcion getters.
     public int getMonedas() {
 

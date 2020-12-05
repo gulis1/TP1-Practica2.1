@@ -3,7 +3,7 @@ package logic.GameObjects;
 import logic.Game;
 
 public class ExplosiveVampire extends Vampire {
-    private int posF[]= { 1,1,0,-1,-1,-1,0,1 };
+    private int posF[]= { 1,1,0,-1,-1,-1,0,1};
     private int posC[]={ 0,1,1,1,0,-1,-1,-1};
 
     public ExplosiveVampire(int x, int y, int hp, Game game) {
@@ -29,28 +29,27 @@ public class ExplosiveVampire extends Vampire {
     }
 
     @Override
-    public void attack() {
-
-    }
-
-    @Override
     public boolean receiveSlayerAttack(int damage) {
+
         boolean s=super.receiveSlayerAttack(damage);
+
+        int posF[] = { 1,1,0,-1,-1,-1,0,1 };
+        int posC[] = { 0,1,1,1,0,-1,-1,-1 };
+
         if(!isAlive()) {
-            for(int i=0;i<posF.length;i++){
-                IAttack other=game.getAttackableInPosition(this.x+posC[i],this.y+posF[i]);
-                if(other != null) {
+            for(int i=0;i<posF.length;i++) {
+                // Aunque la posicion no exista, getAttackableInPosition devolverá null
+                IAttack other = game.getAttackableInPosition(this.x + posC[i],this.y + posF[i]);
+
+                if(other != null )
                     other. receiveSlayerAttack(1);
-                }
-
-
 
             }
         }
 
-
         return s;
     }
+
 
 
 }

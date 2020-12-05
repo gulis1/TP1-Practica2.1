@@ -56,10 +56,6 @@ public class Vampire extends GameObject {
             if (vida <= 0) {
                 onBoard--;
 
-                if (onBoard == 0 && total == game.getLevel().numVampirosLv()) {
-                    game.end();
-                    game.setWinnerMsg("Player wins");
-                }
             }
 
 
@@ -89,6 +85,39 @@ public class Vampire extends GameObject {
             game.setWinnerMsg("Vampires win!");
         }
 
+    }
+
+    public void checkEnd() {
+        if (onBoard == 0 && total == game.getLevel().numVampirosLv()) {
+            game.end();
+            game.setWinnerMsg("Player wins");
+        }
+    }
+
+    @Override
+    public boolean receiveGarlicPush() {
+
+        if (x == game.getLevel().getDimX() - 1) {
+            vida = 0;
+            onBoard--;
+            checkEnd();
+        }
+
+        else {
+            x++;
+            shouldMove = false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean receiveLightFlash() {
+        vida = 0;
+        onBoard--;
+        checkEnd();
+
+        return true;
     }
 
     // Devuelve la cantidad de vampiros que quedan por salir.

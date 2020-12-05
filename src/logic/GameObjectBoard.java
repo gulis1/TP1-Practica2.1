@@ -47,5 +47,10 @@ public class GameObjectBoard {
         return getAttackableInPosition(x,y) == null;
     }
 
-
+    public void garlicPush() {
+        list.garlicPush();
+    }
+    public void lightFlash() {
+        list.light();
+    }
 }
