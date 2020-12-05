@@ -38,7 +38,7 @@ public class Game implements IPrintable {
         board.update();
         Vampire.summon(this);
         Dracula.summon(this);
-
+        ExplosiveVampire.summon(this);
         if (!isFinished())
         ciclo++;
     }
