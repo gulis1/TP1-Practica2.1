@@ -22,15 +22,8 @@ public class Player {
 
     }
     // añaden monedas segun el rng.
-    public void addMonedas() {
-        if (rng.nextFloat() > 0.5 ) {
-            monedas += 10;
-        }
-    }
-
-    //añade 1000 monedas al jugador.
-    public void addMonedaMil(){
-        monedas+=1000;
+    public void addMonedas(int x) {
+        monedas += x;
     }
 
     // funcion getters.

@@ -53,12 +53,14 @@ public class GameObjectList {
     }
 
     public void garlicPush() {
-        for (GameObject object : gameobjects)
-            object.receiveGarlicPush();
+        for (int i = gameobjects.size() - 1; i >= 0; i--)
+            gameobjects.get(i).receiveGarlicPush();
     }
+
     public void light(){
         for(GameObject object : gameobjects){
             object.receiveLightFlash();
         }
     }
+
 }

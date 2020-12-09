@@ -56,7 +56,7 @@ public class Slayer extends GameObject {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
-        if (x >= 0 && x < dimX && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
+        if (x >= 0 && x < dimX-1 && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
             if (monedas >= 50)
                 game.addObject(new Slayer(x, y, 3, game));
             else

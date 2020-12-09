@@ -34,7 +34,10 @@ public class Game implements IPrintable {
 
     //metodo que actualiza el tablero del juego.
     public void update() {
-        player.addMonedas();
+
+        if (rng.nextFloat() > 0.5 )
+            player.addMonedas(10);
+
         board.update();
         Vampire.summon(this);
         Dracula.summon(this);
@@ -76,8 +79,8 @@ public class Game implements IPrintable {
             return false;
     }
     //metodo que añade 1000 monedas al player.
-    public void superCoins(){
-         player.addMonedaMil();
+    public void addCoinsToPlayer(int x){
+         player.addMonedas(x);
     }
 
     //devuelve si hay un objeto en esa posicion.
@@ -96,6 +99,16 @@ public class Game implements IPrintable {
 
         if (error == null)
             player.restarMonedas(50);
+
+        return error;
+
+    }
+
+    public String addBloodBank(int x, int y, int inversion) {
+        String error = BloodBank.AddBloodBank(this, x, y, inversion, player.getMonedas());
+
+        if (error == null)
+            player.restarMonedas(inversion);
 
         return error;
 

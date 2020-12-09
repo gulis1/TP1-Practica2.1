@@ -12,7 +12,7 @@ public class  SuperCoinsCommand extends Command {
     //ejecuta  el superCoins() en el game.
     @Override
     public boolean execute(Game game) {
-        game.superCoins();
+        game.addCoinsToPlayer(1000);
         return true;
     }
 

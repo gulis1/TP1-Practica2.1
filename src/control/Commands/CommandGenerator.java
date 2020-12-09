@@ -11,6 +11,7 @@ public class CommandGenerator {
             new SuperCoinsCommand(),
             new GarlicPushCommand(),
             new LightCommand(),
+            new AddBloodBankCommand()
 
     };
 

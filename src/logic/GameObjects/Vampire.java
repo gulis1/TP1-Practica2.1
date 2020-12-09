@@ -96,19 +96,24 @@ public class Vampire extends GameObject {
 
     @Override
     public boolean receiveGarlicPush() {
+        IAttack other = game.getAttackableInPosition(x+1, y);
 
-        if (x == game.getLevel().getDimX() - 1) {
-            vida = 0;
-            onBoard--;
-            checkEnd();
-        }
+        shouldMove = false;
 
-        else {
+        if (other == null) {
+
+            if (x == game.getLevel().getDimX() - 1) {
+                vida = 0;
+                onBoard--;
+                checkEnd();
+            }
+
             x++;
-            shouldMove = false;
+
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     @Override
