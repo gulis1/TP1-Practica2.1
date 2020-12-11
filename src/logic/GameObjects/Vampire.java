@@ -2,8 +2,6 @@ package logic.GameObjects;
 
 import logic.Game;
 
-import java.util.Random;
-
 public class Vampire extends GameObject {
 
     protected static int onBoard = 0;
@@ -123,6 +121,52 @@ public class Vampire extends GameObject {
         checkEnd();
 
         return true;
+    }
+
+    public  static String addVampire(Game game,String simbolo, int x, int y) {
+        int dimX = game.getLevel().getDimX();
+        int dimY = game.getLevel().getDimY();
+        if(getRemaining(game)!=0) {
+            if (x >= 0 && x < dimX && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
+                switch(simbolo) {
+
+                    case "v":
+                        game.addObject(new Vampire(x, y, HP, game));
+                        onBoard++;
+                        total++;
+
+                    break;
+
+                    case "e":
+                        game.addObject(new ExplosiveVampire(x, y, HP, game));
+                        onBoard++;
+                        total++;
+
+                    break;
+
+                    case "d":
+                        if(!Dracula.isDraculaAlive()) {
+                            game.addObject(new Dracula(x, y, HP, game));
+                            onBoard++;
+                            total++;
+
+
+                        }
+                        else return "Dracula is already alive";
+                        break;
+
+                    default:
+                        return "invalid type";
+                }
+
+
+                return null;
+            } else
+                return "Invalid position";
+        }
+        else
+            return "No more remaining vampires left";
+
     }
 
     // Devuelve la cantidad de vampiros que quedan por salir.

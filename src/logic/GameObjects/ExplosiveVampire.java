@@ -3,8 +3,6 @@ package logic.GameObjects;
 import logic.Game;
 
 public class ExplosiveVampire extends Vampire {
-    private int posF[]= { 1,1,0,-1,-1,-1,0,1};
-    private int posC[]={ 0,1,1,1,0,-1,-1,-1};
 
     public ExplosiveVampire(int x, int y, int hp, Game game) {
         super(x, y, hp, game);

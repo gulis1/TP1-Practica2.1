@@ -53,6 +53,7 @@ public class Game implements IPrintable {
         rng = new Random(seed);
         player = new Player(rng);
         board = new GameObjectBoard();
+        Dracula.resetDraculaAlive();
         Vampire.resetSpawned();
     }
 
@@ -109,6 +110,13 @@ public class Game implements IPrintable {
 
         if (error == null)
             player.restarMonedas(inversion);
+
+        return error;
+
+    }
+    public String addVampire(String simbolo, int x, int y) {
+
+        String error = Vampire.addVampire(this,simbolo,x,y);
 
         return error;
 
