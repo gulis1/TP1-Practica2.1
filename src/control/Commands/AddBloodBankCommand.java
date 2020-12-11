@@ -7,7 +7,7 @@ public class AddBloodBankCommand extends Command {
     private int x, y, z;
 
     public AddBloodBankCommand() {
-        super("bank", "b", "[b]ank <x><y><z>", "add a blood bank in position x y");
+        super("bank", "b", "[b]ank <x> <y> <z>", "add a blood bank with cost z in position x, y.");
     }
 
     // Constructor utilizado para devolver un objeto al CommandGenerator en caso de que coincida con el comando que se introdujo
@@ -25,7 +25,7 @@ public class AddBloodBankCommand extends Command {
         String error = game.addBloodBank(x, y, z);
 
         if (error != null) {
-            System.out.println(error);
+            System.out.println("[ERROR]: " + error);
             return false;
         }
 

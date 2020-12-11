@@ -24,7 +24,7 @@ public class AddCommand extends Command {
         String error = game.addSlayer(x, y);
 
         if (error != null) {
-            System.out.println(error);
+            System.out.println("[ERROR]: " + error);
             return false;
         }
 

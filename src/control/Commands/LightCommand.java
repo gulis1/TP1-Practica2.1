@@ -11,9 +11,15 @@ public class LightCommand extends Command {
     @Override
     public boolean execute(Game game) {
 
-        game.lightFlash();
-        game.update();
-        return true;
+        if (game.lightFlash()) {
+            game.update();
+            return true;
+        }
+
+        else {
+            System.out.println("[ERROR]: Not enough coins");
+            return false;
+        }
     }
 
     //devuelve el comando si el matchcomand devuelve el true.

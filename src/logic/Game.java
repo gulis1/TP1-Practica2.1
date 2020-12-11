@@ -172,7 +172,7 @@ public class Game implements IPrintable {
         String x=String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());;
 
         if(Dracula.isDraculaAlive())
-            x+="Dracula is Alive\n";
+            x+="Dracula is alive\n";
         return x;
     }
 

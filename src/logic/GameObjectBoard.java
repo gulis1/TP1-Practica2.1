@@ -21,9 +21,10 @@ public class GameObjectBoard {
     }
 
     public void update() {
+        list.move();
         list.attack();
         list.removeDead();
-        list.move();
+
     }
 
     // Devuelve el obejto que haya en esa posicion, si no hay ninguno devuelve null.

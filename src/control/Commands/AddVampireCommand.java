@@ -10,7 +10,7 @@ public class AddVampireCommand extends Command{
     private String letra;
 
     public AddVampireCommand() {
-        super("vampire", "v", "[v]ampire [<type>] <x> <y>", "add a vamipire in position x, y");
+        super("vampire", "v", "[v]ampire [<type>] <x> <y>. Type = {\"\"|\"D\"|\"E\"}", "add a vampire in position x, y");
     }
 
     // Constructor utilizado para devolver un objeto al CommandGenerator en caso de que coincida con el comando que se introdujo
@@ -26,7 +26,7 @@ public class AddVampireCommand extends Command{
         String error = game.addVampire(letra, x, y);
 
         if (error != null) {
-            System.out.println(error);
+            System.out.println("[ERROR]: " + error);
             return false;
         }
 

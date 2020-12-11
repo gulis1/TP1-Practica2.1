@@ -51,9 +51,9 @@ public class Vampire extends GameObject {
         if (vida > 0) {
             vida -= damage;
 
-            if (vida <= 0) {
+            if (!isAlive()) {
                 onBoard--;
-
+                checkEnd();
             }
 
 
@@ -69,9 +69,11 @@ public class Vampire extends GameObject {
     public void move() {
 
         if (shouldMove) {
-            if (game.isPositionEmpty(x- 1, y))
+            if (game.isPositionEmpty(x- 1, y)) {
                 x--;
-            shouldMove = false;
+                shouldMove = false;
+            }
+
         }
 
         else

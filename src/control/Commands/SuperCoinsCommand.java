@@ -6,7 +6,7 @@ public class  SuperCoinsCommand extends Command {
 
 
     public SuperCoinsCommand() {
-        super("coins", "c", "[c]oins", "add 1000 coins to the player");
+        super("coins", "c", "[c]oins", "add 1000 coins");
     }
 
     //ejecuta  el superCoins() en el game.

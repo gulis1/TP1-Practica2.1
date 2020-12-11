@@ -5,16 +5,22 @@ import logic.Game;
 public class GarlicPushCommand extends Command{
 
     public GarlicPushCommand() {
-        super("garlic", "g", "[g]arlic", "pushes back vampires");
+        super("garlic", "g", "[g]arlic ", "pushes back vampires");
     }
 
 
     @Override
     public boolean execute(Game game) {
 
-            game.garlicPush();
+        if (game.garlicPush()) {
             game.update();
-        return true;
+            return true;
+        }
+
+        else {
+            System.out.println("[ERROR]: Not enough coins");
+            return false;
+        }
     }
 
     //devuelve el comando si el matchcomand devuelve el true.

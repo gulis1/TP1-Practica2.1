@@ -8,10 +8,10 @@ public class CommandGenerator {
             new ResetCommand(),
             new ExitCommand(),
             new UpdateCommand(),
-            new SuperCoinsCommand(),
             new GarlicPushCommand(),
             new LightCommand(),
             new AddBloodBankCommand(),
+            new SuperCoinsCommand(),
             new AddVampireCommand()
 
     };
