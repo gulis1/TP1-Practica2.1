@@ -36,7 +36,7 @@ public class Vampire extends GameObject {
         }
     }
 
-    //comprueba si el vampiro esta vivo, luego se verifica si hay en objeto en la posicion proxima al vampiro (x-1) y si hay un slayer(object!=null) recive le daño.
+    //Comprueba si el vampiro esta vivo, luego se verifica si hay en objeto en la posicion proxima al vampiro (x-1) y si hay un slayer(object!=null) recive le daño.
     public void attack() {
         if (isAlive () ) {
             IAttack other = game.getAttackableInPosition(x - 1, y);
@@ -45,7 +45,7 @@ public class Vampire extends GameObject {
         }
     }
 
-    // Recibe un ataque del slayer y mata al vampiro si su vida llega a 0. Aqui tambien se realiza la comprobación de que hayan muerto todos los vampiros
+    // Recibe un ataque del slayer y mata al vampiro si su vida llega a 0.Aqui tambien se realiza la comprobación de que hayan muerto todos los vampiros
     public boolean receiveSlayerAttack(int damage) {
 
         if (vida > 0) {
@@ -87,6 +87,7 @@ public class Vampire extends GameObject {
 
     }
 
+    // Comprueba si ya han muerto todos los vampiros.
     public void checkEnd() {
         if (onBoard == 0 && total == game.getLevel().numVampirosLv()) {
             game.end();
@@ -94,11 +95,12 @@ public class Vampire extends GameObject {
         }
     }
 
+    // Empuja a todos los vampiros hacia atrás si la casilla de detrás esta libre.
     @Override
     public boolean receiveGarlicPush() {
         IAttack other = game.getAttackableInPosition(x+1, y);
 
-        shouldMove = false;
+        shouldMove = false; // El vampiro queda aturdido aunque no se mueva
 
         if (other == null) {
 
@@ -116,6 +118,7 @@ public class Vampire extends GameObject {
         return false;
     }
 
+    //Elimina todos los vampiros.
     @Override
     public boolean receiveLightFlash() {
         vida = 0;
@@ -125,11 +128,14 @@ public class Vampire extends GameObject {
         return true;
     }
 
-    public  static String addVampire(Game game,String simbolo, int x, int y) {
+    //Añade un vampiro segun la letra(simbolo) que le pasen.y hace las compobraciones  pertinentes( si hay algun error lo devuelve).
+    public static String addVampire(Game game,String simbolo, int x, int y) {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
-        if(getRemaining(game)!=0) {
+
+        if(getRemaining(game)>0) {
             if (x >= 0 && x < dimX && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
+
                 switch(simbolo) {
 
                     case "v":
@@ -151,9 +157,8 @@ public class Vampire extends GameObject {
                             game.addObject(new Dracula(x, y, HP, game));
                             onBoard++;
                             total++;
-
-
                         }
+
                         else return "Dracula is already alive";
                         break;
 
@@ -166,6 +171,7 @@ public class Vampire extends GameObject {
             } else
                 return "Invalid position";
         }
+
         else
             return "No more remaining vampires left";
 

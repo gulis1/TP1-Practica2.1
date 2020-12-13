@@ -25,6 +25,11 @@ public abstract class GameObject implements IAttack {
         return this.x == x && this.y == y;
     }
 
+    public int getX() {
+        return x;
+    }
+
+
     //metodo que debuelve la vida y el idnetificador del objeto.
     public String getString() { return String.format("%s [%d]", letra, vida); }
 

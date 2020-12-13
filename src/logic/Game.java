@@ -19,7 +19,7 @@ public class Game implements IPrintable {
 
     private GamePrinter printer;
 
-    //contructor
+    // Constructor
     public Game(Long seed, Level level) {
         this.ciclo = 0;
         this.level = level;
@@ -32,7 +32,7 @@ public class Game implements IPrintable {
 
     }
 
-    //metodo que actualiza el tablero del juego.
+    // Método que actualiza el tablero del juego.
     public void update() {
 
         if (rng.nextFloat() > 0.5 )
@@ -47,7 +47,7 @@ public class Game implements IPrintable {
             ciclo++;
     }
 
-    //metodo resetea el juego.
+    // Método resetea el juego.
     public void reset() {
         this.ciclo = 0;
         rng = new Random(seed);
@@ -57,6 +57,7 @@ public class Game implements IPrintable {
         Vampire.resetSpawned();
     }
 
+    // Si el jugador tiene las monedas suficientes, ejecuta el GarlicPush (y se las resta).
     public boolean garlicPush() {
 
         if (player.getMonedas()>= 10) {
@@ -69,6 +70,7 @@ public class Game implements IPrintable {
 
     }
 
+    // Si el jugador tiene las monedas suficientes, ejecuta el LightFlash (y se las resta).
     public boolean lightFlash(){
 
          if (player.getMonedas() >= 50) {
@@ -79,22 +81,22 @@ public class Game implements IPrintable {
         else
             return false;
     }
-    //metodo que añade 1000 monedas al player.
+    //Método que añade  monedas al player.
     public void addCoinsToPlayer(int x){
          player.addMonedas(x);
     }
 
-    //devuelve si hay un objeto en esa posicion.
+    // Devuelve si hay un objeto en esa posicion.
     public IAttack getAttackableInPosition(int x, int y) {
         return board.getAttackableInPosition(x,y);
     }
 
-    //añade un objeto al arraylist.
+    // Añade un objeto al arraylist.
     public void addObject(IAttack object) {
         board.addObject(object);
     }
 
-    //devuele el string(que detalla el error si existe),si no le resta las monedas al player indicando que se pudo añadir el slayer.
+    // Devuele el string(que detalla el error si existe),si no le resta las monedas al player indicando que se pudo añadir el slayer.
     public String addSlayer(int x, int y) {
         String error = Slayer.AddSlayer(this, x, y, player.getMonedas());
 
@@ -105,6 +107,7 @@ public class Game implements IPrintable {
 
     }
 
+    // Devuele el string(que detalla el error si existe),si no le resta las monedas al player(les resta la inversion) indicando que se pudo añadir el BloodBank.
     public String addBloodBank(int x, int y, int inversion) {
         String error = BloodBank.AddBloodBank(this, x, y, inversion, player.getMonedas());
 
@@ -114,6 +117,8 @@ public class Game implements IPrintable {
         return error;
 
     }
+
+    // Devuele el string(que detalla el error si existe),si no añade el vampiro.
     public String addVampire(String simbolo, int x, int y) {
 
         String error = Vampire.addVampire(this,simbolo,x,y);
@@ -122,17 +127,17 @@ public class Game implements IPrintable {
 
     }
 
-    //sobre escribe el gameOver a true, haciendo que el juego termine.
+    // Sobre escribe el gameOver a true, haciendo que el juego termine.
     public void end() {
         gameOver = true;
     }
 
-    //devuelve la variable gameover(es la que controla el final del juego).
+    // Devuelve la variable gameover(es la que controla el final del juego).
     public boolean isFinished() {
         return gameOver;
     }
 
-    //comprueba si la posicion X e Y esta vacia (si no hay ningun objeto).
+    // Comprueba si la posicion X e Y esta vacia (si no hay ningun objeto).
     public boolean isPositionEmpty(int x, int y) {
         return board.isPositionEmpty(x,y);
     }
@@ -142,31 +147,31 @@ public class Game implements IPrintable {
         return printer.toString();
     }
 
-    //funcion getter del level.
+    // Funcion getter del level.
     public Level getLevel() {
         return level;
     }
 
-    //sobre escribe el mensaje final segun como se alla acabado el juego.
+    // Sobre escribe el mensaje final segun como se alla acabado el juego.
     public void setWinnerMsg(String x) { winnerMsg = x; }
 
-    //devuelve el mensaje final del juego.
+    // Devuelve el mensaje final del juego.
     public String getWinnerMsg() {
         return winnerMsg;
     }
 
-    //funcion getter de la variable rng.
+    // Funcion getter de la variable rng.
     public Random getRng() {
         return this.rng;
     }
 
-    //devuelve la posicion del objeto para gameprinter lo imprima.
+    // Devuelve la posicion del objeto para gameprinter lo imprima.
     @Override
     public String getPositionToString(int x, int y) {
         return board.getPositionToString(x,y);
     }
 
-    //devuelve la informacion del juego para que lo imprima el gameprinter.
+    // Devuelve la informacion del juego para que lo imprima el gameprinter.
     @Override
     public String getInfo() {
         String x=String.format("Number of cycles: %d\nCoins: %d\nRemaining vampires: %d\nVampires on the board: %d\n", ciclo, player.getMonedas(), Vampire.getRemaining(this), Vampire.getOnBoard());;

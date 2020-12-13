@@ -8,7 +8,7 @@ public class GarlicPushCommand extends Command{
         super("garlic", "g", "[g]arlic ", "pushes back vampires");
     }
 
-
+    //ejecuta el garlicPush si este devuleve true actualiza el tablero.
     @Override
     public boolean execute(Game game) {
 

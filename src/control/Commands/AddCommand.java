@@ -17,7 +17,7 @@ public class AddCommand extends Command {
         this.y = y;
     }
 
-    //metodo que ejecuta el comando add (vease añade el vampiro), si da al algun error lo imprime,devuelve true o false si se pudo poner el slayer.
+    //metodo que ejecuta el comando add (vease añade el slayer), si da al algun error lo imprime,devuelve true o false si se pudo poner el slayer.
     @Override
     public boolean execute(Game game) {
 

@@ -21,6 +21,7 @@ public class AddVampireCommand extends Command{
         this.letra=letra;
     }
 
+    //metodo que ejecuta el comando addVampire (vease añade el vampiro), si da al algun error lo imprime,devuelve true o false si se pudo poner el vampiro.
     @Override
     public boolean execute(Game game) {
         String error = game.addVampire(letra, x, y);
@@ -34,6 +35,7 @@ public class AddVampireCommand extends Command{
         return true;
     }
 
+    // verifica si no hay ningun fallo en el add (intentando crea un comando add y si este no recoje ninguna exepcion devuelve el comando).
     @Override
     public Command parse(String[] commandWords) {
 

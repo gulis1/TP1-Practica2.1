@@ -17,6 +17,7 @@ public class Dracula extends Vampire {
         return draculaAlive;
     }
 
+    // Hace aparecer un dracula (Si toca en este turno y no hay otro vivo)
     public static void summon(Game game) {
 
         if (!draculaAlive && total < game.getLevel().numVampirosLv() && game.getRng().nextDouble() < game.getLevel().getFrecuencia()) {
@@ -33,6 +34,7 @@ public class Dracula extends Vampire {
         }
     }
 
+    /// Comprueba si el vampiro esta vivo, luego se verifica si hay en objeto en la posicion proxima al vampiro (x-1) y si hay un slayer(object!=null) lo mata.
     @Override
     public void attack() {
         if (isAlive()) {
@@ -42,6 +44,7 @@ public class Dracula extends Vampire {
         }
     }
 
+    // Recibe un ataque del slayer y mata a Dracula, actualiza la variable booleana que comprueba si hay un dracula en la partida.
 
     public boolean receiveSlayerAttack(int damage) {
         boolean x = super.receiveSlayerAttack(1);
@@ -52,7 +55,7 @@ public class Dracula extends Vampire {
         return x;
     }
 
-
+    // Recibe el garlicPush, si muere por el actualiza el draculaAlive a false.
     @Override
     public boolean receiveGarlicPush() {
         boolean x = super.receiveGarlicPush();
@@ -63,9 +66,12 @@ public class Dracula extends Vampire {
         return x;
     }
 
+    // Resetea el draculaAlive a falso.
+    public static void resetDraculaAlive(){draculaAlive=false;}
+
+    // A Dracula no le afecta el LightFlash.
     @Override
     public boolean receiveLightFlash() {
         return false;
     }
-    public static void resetDraculaAlive(){draculaAlive=false;}
 }

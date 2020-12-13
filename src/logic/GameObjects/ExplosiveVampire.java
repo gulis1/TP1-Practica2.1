@@ -9,7 +9,7 @@ public class ExplosiveVampire extends Vampire {
         letra="EV";
     }
 
-    //hay que buscar una forma de no repetir todo esto.
+    // Hace aparecer un vampiro explosivo (Si toca)
     public static void summon(Game game) {
 
         if ( total < game.getLevel().numVampirosLv() && game.getRng().nextDouble() < game.getLevel().getFrecuencia()) {
@@ -26,28 +26,30 @@ public class ExplosiveVampire extends Vampire {
         }
     }
 
+    // Se recorren todas las posiciones que rodean al vampiro explosivo, y en caso de que haya un vampiro, se le resta uno de vida.
     @Override
     public boolean receiveSlayerAttack(int damage) {
 
-        boolean s=super.receiveSlayerAttack(damage);
+        boolean haRecibidoDaño = super.receiveSlayerAttack(damage);
 
-        int posF[] = { 1,1,0,-1,-1,-1,0,1 };
-        int posC[] = { 0,1,1,1,0,-1,-1,-1 };
+        if (haRecibidoDaño && !isAlive()) {
+            int posF[] = { 1,1,0,-1,-1,-1,0,1 };
+            int posC[] = { 0,1,1,1,0,-1,-1,-1 };
 
-        if(!isAlive()) {
+
             for(int i=0;i<posF.length;i++) {
                 // Aunque la posicion no exista, getAttackableInPosition devolverá null
-                IAttack other = game.getAttackableInPosition(this.x + posC[i],this.y + posF[i]);
+                IAttack other = game.getAttackableInPosition(this.x + posC[i], this.y + posF[i]);
 
-                if(other != null )
-                    other. receiveSlayerAttack(1);
+                if (other != null)
+                    other.receiveSlayerAttack(1);
 
             }
+
         }
 
-        return s;
+
+        return haRecibidoDaño;
     }
-
-
 
 }

@@ -8,6 +8,7 @@ public class LightCommand extends Command {
         super("light", "l", "[l]ight", "kills all the vampires");
     }
 
+    //ejecuta el lightFlash si este devuleve true actualiza el tablero.
     @Override
     public boolean execute(Game game) {
 

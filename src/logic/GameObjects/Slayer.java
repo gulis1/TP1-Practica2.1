@@ -7,6 +7,7 @@ import java.util.Random;
 public class Slayer extends GameObject {
 
     public static final int HP = 3;
+
     // constructor
     public Slayer(int x, int y, int vida, Game game) {
         super(x,y,vida,game);
@@ -14,6 +15,7 @@ public class Slayer extends GameObject {
     }
 
     //metodo attack del slayer  , recorre toda la fila en la que esta desde su posicion +1 y para cuando alla goleado a un vampiro.
+    @Override
     public void attack() {
         IAttack other = null;
         int i = x+1;
@@ -33,7 +35,8 @@ public class Slayer extends GameObject {
         }
     }
 
-    //comprueba si el slayer esta vivo, si lo esta, se le resta la vida y devuleve true.
+    // Comprueba si el slayer esta vivo, si lo esta, se le resta la vida y devuleve true.
+    @Override
     public boolean receiveVampireAttack(int damage) {
 
         if (vida > 0) {
@@ -45,6 +48,8 @@ public class Slayer extends GameObject {
             return false;
     }
 
+    // Mata al slayer de manera instantanea.
+    @Override
     public boolean receiveDraculaAttack() {
 
         vida = 0;
@@ -70,7 +75,8 @@ public class Slayer extends GameObject {
 
 
     }
-    //metodo move  heredado de la superclase, esta vacio porque los slayers no se mueven.
+    // Método move heredado de la superclase, esta vacio porque los slayers no se mueven.
+    @Override
     public void move(){
 
     };
