@@ -54,4 +54,8 @@ public class GameObjectBoard {
     public void lightFlash() {
         list.light();
     }
+
+    public String serialize() {
+        return list.serialize();
+    }
 }

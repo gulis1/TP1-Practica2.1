@@ -66,4 +66,12 @@ public class GameObjectList {
         gameobjects.removeIf(x -> !x.isAlive());
     }
 
+    public String serialize() {
+        String text = "Game Object List:\n";
+
+        for(GameObject object : gameobjects){
+            text += object.serialize() + "\n";
+        }
+
+    }
 }

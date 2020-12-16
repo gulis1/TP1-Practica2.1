@@ -187,5 +187,8 @@ public class Vampire extends GameObject {
         return onBoard;
     }
 
-
+    @Override
+    public String serialize() {
+        return super.serialize() + (shouldMove ? ";1" : ";0");
+    }
 }

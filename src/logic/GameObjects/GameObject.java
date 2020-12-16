@@ -33,6 +33,10 @@ public abstract class GameObject implements IAttack {
     //metodo que debuelve la vida y el idnetificador del objeto.
     public String getString() { return String.format("%s [%d]", letra, vida); }
 
+    public String serialize() {
+        return String.format("%s;%d;%d;%d", letra, x, y, vida);
+    }
+
 
     //metodos abstractos
     public abstract void move();
