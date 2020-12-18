@@ -66,4 +66,12 @@ public class BloodBank extends GameObject {
     @Override
     public String getString() { return String.format("%s [%d]", letra, inversion); }
 
+    @Override
+    public String serialize() {
+        String x= super.serialize();
+        x+=";"+Integer.toString(inversion);
+
+        return x;
+
+    }
 }

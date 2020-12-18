@@ -1,5 +1,6 @@
 package logic.Lists;
 
+import com.sun.javafx.binding.StringFormatter;
 import logic.Game;
 import logic.GameObjects.GameObject;
 import logic.GameObjects.IAttack;
@@ -67,11 +68,14 @@ public class GameObjectList {
     }
 
     public String serialize() {
-        String text = "Game Object List:\n";
+
+        StringBuilder builder = new StringBuilder("Game Object List:\n");
 
         for(GameObject object : gameobjects){
-            text += object.serialize() + "\n";
+            builder.append(object.serialize());
+            builder.append("\n");
         }
 
+        return builder.toString();
     }
 }

@@ -12,7 +12,9 @@ public class CommandGenerator {
             new LightCommand(),
             new AddBloodBankCommand(),
             new SuperCoinsCommand(),
-            new AddVampireCommand()
+            new AddVampireCommand(),
+            new SerializeCommand(),
+            new SaveCommand()
 
     };
 

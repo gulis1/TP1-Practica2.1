@@ -131,9 +131,10 @@ public class Game implements IPrintable {
 
         String text;
 
-        text = String.format("Cycles: %d\nCoins: %d\nLevel: %s\nRemaining Vampires: %d\nVampires on Board: %d\n", player.getMonedas(), level.name(), Vampire.getRemaining(this), Vampire.getOnBoard());
+        text = String.format("Cycles: %d\nCoins: %d\nLevel: %s\nRemaining Vampires: %d\nVampires on Board: %d\n\n", ciclo, player.getMonedas(), level.name(), Vampire.getRemaining(this), Vampire.getOnBoard());
         text += board.serialize();
 
+        return text;
     }
 
     // Sobre escribe el gameOver a true, haciendo que el juego termine.

@@ -74,4 +74,6 @@ public class Dracula extends Vampire {
     public boolean receiveLightFlash() {
         return false;
     }
+
+
 }

@@ -6,11 +6,12 @@ public class SerializeCommand extends Command {
 
 
     public SerializeCommand() {
-        super("serialize", "z", "Shows game info", "[z]serialize");
+        super("serialize", "z", "[z]serialize", "Shows game info");
     }
 
     @Override
     public boolean execute(Game game) {
+        System.out.println(game.serialize());
         return false;
     }
 

@@ -80,4 +80,6 @@ public class Slayer extends GameObject {
     public void move(){
 
     };
+
+
 }
