@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import control.Commands.Command;
 import control.Commands.CommandGenerator;
+import control.Exceptions.GameException;
 import logic.Game;
 import logic.GameObjects.GameObject;
 import view.GamePrinter;
@@ -38,13 +39,15 @@ public class Controller {
 	    	String s = scanner.nextLine();
 	    	String[] parameters = s.toLowerCase().trim().split(" ");
 	    	System.out.println("[DEBUG] Executing: " + s);
-	    	Command command = CommandGenerator.parse(parameters);
 
-	    	if (command != null)
-	    		refreshDisplay = command.execute(game);
+			try {
+				Command command = CommandGenerator.parse(parameters);
+				refreshDisplay = command.execute(game);
+			}
+			catch (GameException ex) {
+				System.out.format(ex.getMessage() + " %n %n");
+			}
 
-	    	else
-	    		System.out.println("[ERROR]: " + unknownCommandMsg);
 
 		}
 

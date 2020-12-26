@@ -1,5 +1,8 @@
 package control.Commands;
 
+import control.Exceptions.CommandExecuteException;
+import control.Exceptions.CommandParseException;
+import control.Exceptions.GameException;
 import logic.Game;
 
 public abstract class Command {
@@ -28,26 +31,23 @@ public abstract class Command {
 	  }
 
 	  //devuelve el comando si machCommandName es igual a true.
-	  protected Command parseNoParamsCommand(String[] words) {
-	
-			if (matchCommandName(words[0])) {
-				if (words.length != 1) {
-					System.err.println(incorrectArgsMsg);
-					return null;
-				}
-				return this;
-			}
-			
-			return null;
+	  protected Command parseNoParamsCommand(String[] words) throws CommandParseException {
+		  if (matchCommandName(words[0])) {
+			  if (words.length != 1)
+				  throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
+			  else return this;
+		  }
+		  return null;
 	  }
 
-	  //devuelve en un string el details y el help de un comando.
+
+	//devuelve en un string el details y el help de un comando.
 	  public String helpText(){
 	    return details + ": " + help + "\n";
 	  }
 
 	//metodos de abstractos.
-	public abstract boolean execute(Game game);
+	public abstract boolean execute(Game game)  throws  CommandExecuteException, GameException;
 
-	public abstract Command parse(String[] commandWords);
+	public abstract Command parse(String[] commandWords) throws CommandParseException;
 }

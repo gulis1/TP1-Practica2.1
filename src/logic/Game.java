@@ -1,5 +1,6 @@
 package logic;
 
+import control.Exceptions.GameException;
 import logic.GameObjects.*;
 import view.GamePrinter;
 import view.IPrintable;
@@ -97,13 +98,12 @@ public class Game implements IPrintable {
     }
 
     // Devuele el string(que detalla el error si existe),si no le resta las monedas al player indicando que se pudo añadir el slayer.
-    public String addSlayer(int x, int y) {
-        String error = Slayer.AddSlayer(this, x, y, player.getMonedas());
+    public void addSlayer(int x, int y) throws GameException {
+        Slayer.AddSlayer(this, x, y, player.getMonedas());
 
-        if (error == null)
-            player.restarMonedas(50);
+        // Si se lanza la excepcion de notEnoughCoins no se le van a restar.
+        player.restarMonedas(50);
 
-        return error;
 
     }
 
@@ -119,11 +119,10 @@ public class Game implements IPrintable {
     }
 
     // Devuele el string(que detalla el error si existe),si no añade el vampiro.
-    public String addVampire(String simbolo, int x, int y) {
+    public void addVampire(String simbolo, int x, int y) throws GameException{
 
-        String error = Vampire.addVampire(this,simbolo,x,y);
+        Vampire.addVampire(this,simbolo,x,y);
 
-        return error;
 
     }
 

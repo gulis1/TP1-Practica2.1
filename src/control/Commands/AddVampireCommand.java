@@ -1,5 +1,8 @@
 package control.Commands;
 
+import control.Exceptions.CommandExecuteException;
+import control.Exceptions.CommandParseException;
+import control.Exceptions.GameException;
 import logic.Game;
 
 import java.util.Locale;
@@ -23,21 +26,16 @@ public class AddVampireCommand extends Command{
 
     //metodo que ejecuta el comando addVampire (vease añade el vampiro), si da al algun error lo imprime,devuelve true o false si se pudo poner el vampiro.
     @Override
-    public boolean execute(Game game) {
-        String error = game.addVampire(letra, x, y);
+    public boolean execute(Game game) throws GameException {
 
-        if (error != null) {
-            System.out.println("[ERROR]: " + error);
-            return false;
-        }
-
+        game.addVampire(letra, x, y);
 
         return true;
     }
 
-    // verifica si no hay ningun fallo en el add (intentando crea un comando add y si este no recoje ninguna exepcion devuelve el comando).
+    // verifica si no hay ningun fallo en el add (intentando crea un comando add y si este no recoge ninguna exepcion devuelve el comando).
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
 
         if (matchCommandName(commandWords[0])) {
 
@@ -50,13 +48,12 @@ public class AddVampireCommand extends Command{
                     return new AddVampireCommand(commandWords[1].toLowerCase(), Integer.parseInt(commandWords[2]), Integer.parseInt(commandWords[3]));
 
                 else {
-                    System.err.println(incorrectNumberOfArgsMsg);
-                    return null;
+                    throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
                 }
             }
 
             catch (NumberFormatException e) {
-                return null;
+                throw new CommandParseException("[ERROR]: Command "+name+": NumberFormatException");
             }
 
         }

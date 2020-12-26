@@ -1,5 +1,7 @@
 package control.Commands;
 
+import control.Exceptions.CommandParseException;
+
 public class CommandGenerator {
 
     private static Command[] availableCommands = {
@@ -19,7 +21,7 @@ public class CommandGenerator {
     };
 
     //retorna el comando si los comandos escritos en consola son correctos.
-    public static Command parse(String[] commandWords) {
+    public static Command parse(String[] commandWords) throws CommandParseException {
         Command comando = null;
         int i = 0;
 
@@ -27,6 +29,9 @@ public class CommandGenerator {
             comando = availableCommands[i].parse(commandWords);
             i++;
         }
+
+        if (comando == null)
+            throw new CommandParseException("[ERROR]: Unknown command");
 
         return comando;
     }

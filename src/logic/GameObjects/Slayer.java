@@ -1,5 +1,8 @@
 package logic.GameObjects;
 
+import control.Exceptions.CommandExecuteException;
+import control.Exceptions.InvalidPositionException;
+import control.Exceptions.NotEnoughCoinsException;
 import logic.Game;
 
 import java.util.Random;
@@ -14,7 +17,7 @@ public class Slayer extends GameObject {
         letra = "S";
     }
 
-    //metodo attack del slayer  , recorre toda la fila en la que esta desde su posicion +1 y para cuando alla goleado a un vampiro.
+    //metodo attack del slayer, recorre toda la fila en la que esta desde su posicion +1 y para cuando alla goleado a un vampiro.
     @Override
     public void attack() {
         IAttack other = null;
@@ -57,7 +60,7 @@ public class Slayer extends GameObject {
     }
 
     // Intenta añadir un slayer a la partida. En caso de no poderse, devuelve un mensaje de error indicando el motivo por el cual no se pudo.
-    public static String AddSlayer(Game game, int x, int y, int monedas) {
+    public static void AddSlayer(Game game, int x, int y, int monedas) throws CommandExecuteException {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
@@ -65,13 +68,13 @@ public class Slayer extends GameObject {
             if (monedas >= 50)
                 game.addObject(new Slayer(x, y, 3, game));
             else
-                return "Not enough coins";
+                throw new NotEnoughCoinsException("Not enough coins");
 
-            return null;
+
         }
 
         else
-            return "Invalid position";
+            throw new InvalidPositionException(x,y,"Invalid position");
 
 
     }

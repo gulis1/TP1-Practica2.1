@@ -1,5 +1,6 @@
 package control.Commands;
 
+import control.Exceptions.CommandParseException;
 import logic.Game;
 
 public class AddBloodBankCommand extends Command {
@@ -35,14 +36,13 @@ public class AddBloodBankCommand extends Command {
 
     // verifica si no hay ningun fallo en el add (intentando crea un comando AddBloodBankCommand y si este no recoje ninguna exepcion devuelve el comando).
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
 
         if (matchCommandName(commandWords[0])) {
 
-            if (commandWords.length != 4) {
-                System.err.println(incorrectNumberOfArgsMsg);
-                return null;
-            }
+            if (commandWords.length != 4) 
+                throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
+
 
             else {
                 try {
@@ -50,7 +50,8 @@ public class AddBloodBankCommand extends Command {
                 }
 
                 catch(NumberFormatException e){
-                    return null;
+                    throw new CommandParseException("[ERROR]: Command "+name+": NumberFormatException");
+
                 }
             }
 

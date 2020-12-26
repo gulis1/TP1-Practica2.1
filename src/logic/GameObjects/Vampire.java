@@ -1,5 +1,6 @@
 package logic.GameObjects;
 
+import control.Exceptions.*;
 import logic.Game;
 
 public class Vampire extends GameObject {
@@ -129,7 +130,7 @@ public class Vampire extends GameObject {
     }
 
     //Añade un vampiro segun la letra(simbolo) que le pasen.y hace las compobraciones  pertinentes( si hay algun error lo devuelve).
-    public static String addVampire(Game game,String simbolo, int x, int y) {
+    public static void addVampire(Game game,String simbolo, int x, int y) throws CommandExecuteException {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
@@ -159,21 +160,22 @@ public class Vampire extends GameObject {
                             total++;
                         }
 
-                        else return "Dracula is already alive";
+                        else
+                            throw  new DraculaIsAliveException("Dracula is already alive");
                         break;
 
                     default:
-                        return "invalid type";
+                       throw new InvalidTypeException("invalid type");
                 }
 
 
-                return null;
+
             } else
-                return "Invalid position";
+                throw new InvalidPositionException(x, y, "Invalid position");
         }
 
         else
-            return "No more remaining vampires left";
+            throw new NoMoreVampiresException("No more remaining vampires left");
 
     }
 

@@ -1,5 +1,6 @@
 package control.Commands;
 
+import control.Exceptions.CommandParseException;
 import logic.Game;
 
 public class ResetCommand extends Command {
@@ -17,7 +18,7 @@ public class ResetCommand extends Command {
 
     //devuelve el comando si el matchcomand devuelve el true.
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
         return parseNoParamsCommand(commandWords);
     }
 }

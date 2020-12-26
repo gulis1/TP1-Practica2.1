@@ -1,5 +1,8 @@
 package control.Commands;
 
+import control.Exceptions.CommandExecuteException;
+import control.Exceptions.CommandParseException;
+import control.Exceptions.GameException;
 import logic.Game;
 
 public class AddCommand extends Command {
@@ -19,14 +22,9 @@ public class AddCommand extends Command {
 
     //metodo que ejecuta el comando add (vease añade el slayer), si da al algun error lo imprime,devuelve true o false si se pudo poner el slayer.
     @Override
-    public boolean execute(Game game) {
+    public boolean execute(Game game) throws GameException {
 
-        String error = game.addSlayer(x, y);
-
-        if (error != null) {
-            System.out.println("[ERROR]: " + error);
-            return false;
-        }
+        game.addSlayer(x, y);
 
         game.update();
         return true;
@@ -34,14 +32,12 @@ public class AddCommand extends Command {
 
     // verifica si no hay ningun fallo en el add (intentando crea un comando add y si este no recoje ninguna exepcion devuelve el comando).
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
 
         if (matchCommandName(commandWords[0])) {
 
-            if (commandWords.length != 3) {
-                System.err.println(incorrectNumberOfArgsMsg);
-                return null;
-            }
+            if (commandWords.length != 3)
+                throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
 
             else {
                 try {
@@ -49,7 +45,7 @@ public class AddCommand extends Command {
                 }
 
                 catch(NumberFormatException e){
-                    return null;
+                    throw new CommandParseException("[ERROR]: Command "+name+": NumberFormatException");
                 }
             }
 
