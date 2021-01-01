@@ -161,21 +161,21 @@ public class Vampire extends GameObject {
                         }
 
                         else
-                            throw  new DraculaIsAliveException("Dracula is already alive");
+                            throw new DraculaIsAliveException();
                         break;
 
                     default:
-                       throw new InvalidTypeException("invalid type");
+                       throw new InvalidTypeException();
                 }
 
 
 
             } else
-                throw new InvalidPositionException(x, y, "Invalid position");
+                throw new InvalidPositionException(x, y, "this vampire.");
         }
 
         else
-            throw new NoMoreVampiresException("No more remaining vampires left");
+            throw new NoMoreVampiresException();
 
     }
 

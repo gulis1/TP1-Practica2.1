@@ -68,13 +68,13 @@ public class Slayer extends GameObject {
             if (monedas >= 50)
                 game.addObject(new Slayer(x, y, 3, game));
             else
-                throw new NotEnoughCoinsException("Not enough coins");
+                throw new NotEnoughCoinsException("Defener", 50, "add slayer");
 
 
         }
 
         else
-            throw new InvalidPositionException(x,y,"Invalid position");
+            throw new InvalidPositionException(x,y,"slayer");
 
 
     }

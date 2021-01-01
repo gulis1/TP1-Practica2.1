@@ -1,6 +1,6 @@
 package logic.Lists;
 
-import com.sun.javafx.binding.StringFormatter;
+
 import logic.Game;
 import logic.GameObjects.GameObject;
 import logic.GameObjects.IAttack;

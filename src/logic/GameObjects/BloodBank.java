@@ -1,6 +1,11 @@
 package logic.GameObjects;
 
+import control.Exceptions.CommandExecuteException;
+import control.Exceptions.InvalidPositionException;
+import control.Exceptions.NotEnoughCoinsException;
 import logic.Game;
+
+import java.util.concurrent.ExecutionException;
 
 public class BloodBank extends GameObject {
 
@@ -40,7 +45,7 @@ public class BloodBank extends GameObject {
     }
 
     // Se añade un bloodbank de x monedas en la posicion x. Se devuelve un mensaje de error en caso de que ocurra alguno.
-    public static String AddBloodBank(Game game, int x, int y, int inversion, int monedas) {
+    public static String AddBloodBank(Game game, int x, int y, int inversion, int monedas) throws CommandExecuteException {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
@@ -51,13 +56,13 @@ public class BloodBank extends GameObject {
             if (inversion >= 10 && inversion<=monedas)
                 game.addObject(new BloodBank(x, y, inversion, game));
             else
-                return "not enough coins";
+                throw new NotEnoughCoinsException("Defender",  inversion ," add bank");
 
             return null;
         }
 
         else
-            return "Invalid position";
+            throw new InvalidPositionException(x, y, "bank");
 
 
     }

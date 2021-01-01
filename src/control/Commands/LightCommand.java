@@ -1,6 +1,7 @@
 package control.Commands;
 
 import control.Exceptions.CommandParseException;
+import control.Exceptions.GameException;
 import logic.Game;
 
 public class LightCommand extends Command {
@@ -11,17 +12,13 @@ public class LightCommand extends Command {
 
     //ejecuta el lightFlash si este devuleve true actualiza el tablero.
     @Override
-    public boolean execute(Game game) {
+    public boolean execute(Game game) throws GameException {
 
-        if (game.lightFlash()) {
-            game.update();
-            return true;
-        }
+        game.lightFlash();
+        game.update();
+        return true;
 
-        else {
-            System.out.println("[ERROR]: Not enough coins");
-            return false;
-        }
+
     }
 
     //devuelve el comando si el matchcomand devuelve el true.

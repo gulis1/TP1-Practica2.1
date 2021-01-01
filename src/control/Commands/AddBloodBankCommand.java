@@ -1,6 +1,7 @@
 package control.Commands;
 
 import control.Exceptions.CommandParseException;
+import control.Exceptions.GameException;
 import logic.Game;
 
 public class AddBloodBankCommand extends Command {
@@ -21,15 +22,9 @@ public class AddBloodBankCommand extends Command {
 
     //metodo que ejecuta el comando addBloodBank, si da al algun error lo imprime,devuelve true o false si se pudo poner el BloodBank.
     @Override
-    public boolean execute(Game game) {
+    public boolean execute(Game game) throws GameException {
 
-        String error = game.addBloodBank(x, y, z);
-
-        if (error != null) {
-            System.out.println("[ERROR]: " + error);
-            return false;
-        }
-
+        game.addBloodBank(x, y, z);
         game.update();
         return true;
     }

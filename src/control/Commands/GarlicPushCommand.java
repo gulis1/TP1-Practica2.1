@@ -1,6 +1,8 @@
 package control.Commands;
 
+import control.Exceptions.CommandExecuteException;
 import control.Exceptions.CommandParseException;
+import control.Exceptions.GameException;
 import logic.Game;
 
 public class GarlicPushCommand extends Command{
@@ -11,17 +13,11 @@ public class GarlicPushCommand extends Command{
 
     //ejecuta el garlicPush si este devuleve true actualiza el tablero.
     @Override
-    public boolean execute(Game game) {
+    public boolean execute(Game game) throws CommandExecuteException {
 
-        if (game.garlicPush()) {
-            game.update();
-            return true;
-        }
-
-        else {
-            System.out.println("[ERROR]: Not enough coins");
-            return false;
-        }
+        game.garlicPush();
+        game.update();
+        return true;
     }
 
     //devuelve el comando si el matchcomand devuelve el true.

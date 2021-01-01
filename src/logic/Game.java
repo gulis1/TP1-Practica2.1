@@ -1,6 +1,8 @@
 package logic;
 
+import control.Exceptions.CommandExecuteException;
 import control.Exceptions.GameException;
+import control.Exceptions.NotEnoughCoinsException;
 import logic.GameObjects.*;
 import view.GamePrinter;
 import view.IPrintable;
@@ -59,28 +61,28 @@ public class Game implements IPrintable {
     }
 
     // Si el jugador tiene las monedas suficientes, ejecuta el GarlicPush (y se las resta).
-    public boolean garlicPush() {
+    public void garlicPush() throws CommandExecuteException{
 
         if (player.getMonedas()>= 10) {
             board.garlicPush();
             player.restarMonedas(10);
-            return true;
         }
+
         else
-            return false;
+            throw new NotEnoughCoinsException("Garlic ", 10 , "GarlicPush");
 
     }
 
     // Si el jugador tiene las monedas suficientes, ejecuta el LightFlash (y se las resta).
-    public boolean lightFlash(){
+    public boolean lightFlash() throws CommandExecuteException{
 
          if (player.getMonedas() >= 50) {
             board.lightFlash();
             player.restarMonedas(50);
-            return true;
         }
-        else
-            return false;
+
+        throw new NotEnoughCoinsException("Light ", 50 ,"LightFlash");
+
     }
     //Método que añade  monedas al player.
     public void addCoinsToPlayer(int x){
@@ -108,13 +110,11 @@ public class Game implements IPrintable {
     }
 
     // Devuele el string(que detalla el error si existe),si no le resta las monedas al player(les resta la inversion) indicando que se pudo añadir el BloodBank.
-    public String addBloodBank(int x, int y, int inversion) {
-        String error = BloodBank.AddBloodBank(this, x, y, inversion, player.getMonedas());
+    public void addBloodBank(int x, int y, int inversion) throws CommandExecuteException {
+        BloodBank.AddBloodBank(this, x, y, inversion, player.getMonedas());
 
-        if (error == null)
-            player.restarMonedas(inversion);
 
-        return error;
+        player.restarMonedas(inversion);
 
     }
 
