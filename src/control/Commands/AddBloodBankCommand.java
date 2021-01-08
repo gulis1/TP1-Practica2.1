@@ -1,5 +1,6 @@
 package control.Commands;
 
+import control.Exceptions.CommandExecuteException;
 import control.Exceptions.CommandParseException;
 import control.Exceptions.GameException;
 import logic.Game;
@@ -22,7 +23,7 @@ public class AddBloodBankCommand extends Command {
 
     //metodo que ejecuta el comando addBloodBank, si da al algun error lo imprime,devuelve true o false si se pudo poner el BloodBank.
     @Override
-    public boolean execute(Game game) throws GameException {
+    public boolean execute(Game game) throws CommandExecuteException {
 
         game.addBloodBank(x, y, z);
         game.update();
@@ -36,7 +37,7 @@ public class AddBloodBankCommand extends Command {
         if (matchCommandName(commandWords[0])) {
 
             if (commandWords.length != 4) 
-                throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
+                throw new CommandParseException("Command "+name+": "+incorrectNumberOfArgsMsg);
 
 
             else {
@@ -45,7 +46,7 @@ public class AddBloodBankCommand extends Command {
                 }
 
                 catch(NumberFormatException e){
-                    throw new CommandParseException("[ERROR]: Command "+name+": NumberFormatException");
+                    throw new CommandParseException("Command "+name+": NumberFormatException");
 
                 }
             }

@@ -1,5 +1,6 @@
 package control.Commands;
 
+import control.Exceptions.CommandExecuteException;
 import control.Exceptions.CommandParseException;
 import control.Exceptions.GameException;
 import logic.Game;
@@ -12,7 +13,7 @@ public class LightCommand extends Command {
 
     //ejecuta el lightFlash si este devuleve true actualiza el tablero.
     @Override
-    public boolean execute(Game game) throws GameException {
+    public boolean execute(Game game) throws CommandExecuteException {
 
         game.lightFlash();
         game.update();

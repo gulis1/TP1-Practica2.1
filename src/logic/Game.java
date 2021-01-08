@@ -69,7 +69,7 @@ public class Game implements IPrintable {
         }
 
         else
-            throw new NotEnoughCoinsException("Garlic ", 10 , "GarlicPush");
+            throw new NotEnoughCoinsException("Garlic", 10 , "GarlicPush");
 
     }
 
@@ -81,7 +81,7 @@ public class Game implements IPrintable {
             player.restarMonedas(50);
         }
 
-        throw new NotEnoughCoinsException("Light ", 50 ,"LightFlash");
+        throw new NotEnoughCoinsException("Light", 50 ,"LightFlash");
 
     }
     //Método que añade  monedas al player.
@@ -100,7 +100,7 @@ public class Game implements IPrintable {
     }
 
     // Devuele el string(que detalla el error si existe),si no le resta las monedas al player indicando que se pudo añadir el slayer.
-    public void addSlayer(int x, int y) throws GameException {
+    public void addSlayer(int x, int y) throws CommandExecuteException{
         Slayer.AddSlayer(this, x, y, player.getMonedas());
 
         // Si se lanza la excepcion de notEnoughCoins no se le van a restar.
@@ -119,7 +119,7 @@ public class Game implements IPrintable {
     }
 
     // Devuele el string(que detalla el error si existe),si no añade el vampiro.
-    public void addVampire(String simbolo, int x, int y) throws GameException{
+    public void addVampire(String simbolo, int x, int y) throws CommandExecuteException{
 
         Vampire.addVampire(this,simbolo,x,y);
 

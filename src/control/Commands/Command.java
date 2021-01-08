@@ -47,7 +47,7 @@ public abstract class Command {
 	  }
 
 	//metodos de abstractos.
-	public abstract boolean execute(Game game)  throws  CommandExecuteException, GameException;
+	public abstract boolean execute(Game game) throws CommandExecuteException;
 
 	public abstract Command parse(String[] commandWords) throws CommandParseException;
 }

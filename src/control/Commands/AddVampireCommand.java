@@ -26,7 +26,7 @@ public class AddVampireCommand extends Command{
 
     //metodo que ejecuta el comando addVampire (vease añade el vampiro), si da al algun error lo imprime,devuelve true o false si se pudo poner el vampiro.
     @Override
-    public boolean execute(Game game) throws GameException {
+    public boolean execute(Game game) throws CommandExecuteException {
 
         game.addVampire(letra, x, y);
 
@@ -48,12 +48,12 @@ public class AddVampireCommand extends Command{
                     return new AddVampireCommand(commandWords[1].toLowerCase(), Integer.parseInt(commandWords[2]), Integer.parseInt(commandWords[3]));
 
                 else {
-                    throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
+                    throw new CommandParseException("Command "+name+": "+incorrectNumberOfArgsMsg);
                 }
             }
 
             catch (NumberFormatException e) {
-                throw new CommandParseException("[ERROR]: Command "+name+": NumberFormatException");
+                throw new CommandParseException("Command "+name+": NumberFormatException");
             }
 
         }

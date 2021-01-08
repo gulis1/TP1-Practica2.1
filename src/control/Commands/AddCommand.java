@@ -22,7 +22,7 @@ public class AddCommand extends Command {
 
     //metodo que ejecuta el comando add (vease añade el slayer), si da al algun error lo imprime,devuelve true o false si se pudo poner el slayer.
     @Override
-    public boolean execute(Game game) throws GameException {
+    public boolean execute(Game game) throws CommandExecuteException {
 
         game.addSlayer(x, y);
 
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
         if (matchCommandName(commandWords[0])) {
 
             if (commandWords.length != 3)
-                throw new CommandParseException("[ERROR]: Command "+name+" :"+incorrectNumberOfArgsMsg);
+                throw new CommandParseException("Command "+name+": "+incorrectNumberOfArgsMsg);
 
             else {
                 try {
@@ -45,7 +45,7 @@ public class AddCommand extends Command {
                 }
 
                 catch(NumberFormatException e){
-                    throw new CommandParseException("[ERROR]: Command "+name+": NumberFormatException");
+                    throw new CommandParseException("Command "+name+": NumberFormatException");
                 }
             }
 

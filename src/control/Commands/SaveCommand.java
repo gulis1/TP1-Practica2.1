@@ -1,5 +1,6 @@
 package control.Commands;
 
+import control.Exceptions.CommandParseException;
 import logic.Game;
 
 import java.io.BufferedWriter;
@@ -26,11 +27,11 @@ public class SaveCommand extends Command{
             writer.write(game.serialize());
             writer.close();
 
-            System.out.printf("Game succesfully saved.");
+            System.out.println("Game succesfully saved.");
         }
 
-        catch (IOException e) {
-            System.out.printf("Error catastrófico. \uD83E\uDD1F\uD83D\uDE14\n");
+        catch (IOException e) {                         //Carita triste
+            System.out.printf("Error al guardar. \uD83E\uDD1F\uD83D\uDE14\n");
         }
 
 
@@ -38,7 +39,7 @@ public class SaveCommand extends Command{
     }
 
     @Override
-    public Command parse(String[] commandWords) {
+    public Command parse(String[] commandWords) throws CommandParseException {
 
         if (matchCommandName(commandWords[0])) {
 
@@ -46,8 +47,7 @@ public class SaveCommand extends Command{
                 return new SaveCommand(commandWords[1]);
 
             else {
-                System.err.println(incorrectNumberOfArgsMsg);
-                return null;
+                throw new CommandParseException("Command "+name+": "+incorrectNumberOfArgsMsg);
             }
 
         }
