@@ -22,16 +22,16 @@ public class SaveCommand extends Command{
     @Override
     public boolean execute(Game game) {
 
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+        // El archivo se cierra automáticamente al salir del try.
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
             writer.write(game.serialize());
-            writer.close();
 
-            System.out.println("Game succesfully saved.");
+
+            System.out.println("Game successfully saved.");
         }
 
         catch (IOException e) {                         //Carita triste
-            System.out.printf("Error al guardar. \uD83E\uDD1F\uD83D\uDE14\n");
+            System.out.println("Error al guardar. \uD83E\uDD1F\uD83D\uDE14");
         }
 
 
