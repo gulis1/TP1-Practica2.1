@@ -45,7 +45,7 @@ public class Controller {
 				refreshDisplay = command.execute(game);
 			}
 			catch (GameException ex) {
-				System.out.format("[ERROR] " + ex.getMessage() + "%n%n");
+				System.out.format( ex.getMessage() + "%n%n");
 
 			}
 
