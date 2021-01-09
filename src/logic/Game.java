@@ -125,7 +125,8 @@ public class Game implements IPrintable {
 
 
     }
-
+    //Devuelve el formato con el que se va a guardar la partida ( ciclos,monedas,nivel,vampiros restantes, vampiros en tablero),
+    // aparte de los datos que devuelve el board.serialize (devolverá los datos de los elementos que esten en el tablero).
     public String serialize() {
 
         String text;

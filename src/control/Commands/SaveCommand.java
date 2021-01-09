@@ -19,6 +19,7 @@ public class SaveCommand extends Command{
        this();
        this.filename= filename + ".dat";
     }
+    //Guarda la partida con el nombre dado por el usuario(pasado por el constructor).
     @Override
     public boolean execute(Game game) {
 
@@ -38,6 +39,7 @@ public class SaveCommand extends Command{
         return false;
     }
 
+    //Revisa si el comando tiene todos los argumentos necesario(el shortcut y el nombre del archivo).
     @Override
     public Command parse(String[] commandWords) throws CommandParseException {
 

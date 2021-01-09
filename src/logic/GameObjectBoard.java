@@ -55,6 +55,7 @@ public class GameObjectBoard {
         list.light();
     }
 
+    // Llama al método serialize de todos los objetos en el tablero.
     public String serialize() {
         return list.serialize();
     }

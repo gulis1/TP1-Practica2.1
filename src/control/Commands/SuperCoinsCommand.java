@@ -10,14 +10,14 @@ public class  SuperCoinsCommand extends Command {
         super("coins", "c", "[c]oins", "add 1000 coins");
     }
 
-    //ejecuta  el superCoins() en el game.
+    // Ejecuta  el superCoins() en el game.
     @Override
     public boolean execute(Game game) {
         game.addCoinsToPlayer(1000);
         return true;
     }
 
-    //devuelve el comando si el matchcomand devuelve el true.
+    // Devuelve el comando si el match command devuelve el true.
     @Override
     public Command parse(String[] commandWords) throws CommandParseException {
         return parseNoParamsCommand(commandWords);

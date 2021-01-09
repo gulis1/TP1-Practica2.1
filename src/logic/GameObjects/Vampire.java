@@ -189,6 +189,7 @@ public class Vampire extends GameObject {
         return onBoard;
     }
 
+    //Aparte de agregar los datos del GameObject(la clase padre) se le suma si el vampiro puede moverse o no según el booleano shouldMove.
     @Override
     public String serialize() {
         return super.serialize() + (shouldMove ? ";1" : ";0");

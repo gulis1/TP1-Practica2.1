@@ -56,7 +56,7 @@ public class BloodBank extends GameObject {
             if (inversion >= 10 && inversion<=monedas)
                 game.addObject(new BloodBank(x, y, inversion, game));
             else
-                throw new NotEnoughCoinsException("Defender",  inversion ," add bank");
+                throw new NotEnoughCoinsException("Defender",  inversion ,"add bank");
 
             return null;
         }
@@ -71,6 +71,7 @@ public class BloodBank extends GameObject {
     @Override
     public String getString() { return String.format("%s [%d]", letra, inversion); }
 
+    //Aparte de agregar los datos del GameObject(la clase padre) se le suma la inversion del BloodBank.
     @Override
     public String serialize() {
         String x= super.serialize();

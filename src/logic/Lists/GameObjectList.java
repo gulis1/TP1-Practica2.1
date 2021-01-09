@@ -67,6 +67,7 @@ public class GameObjectList {
         gameobjects.removeIf(x -> !x.isAlive());
     }
 
+    // Llama al método serialize de todos los objetos en la lista y los concatena según el formato especificado en el enunciado
     public String serialize() {
 
         StringBuilder builder = new StringBuilder("Game Object List:\n");

@@ -30,7 +30,7 @@ public class AddCommand extends Command {
         return true;
     }
 
-    // verifica si no hay ningun fallo en el add (intentando crea un comando add y si este no recoje ninguna exepcion devuelve el comando).
+    // verifica si no hay ningún fallo en el add (intentando crea un comando add y si este no recoge ninguna exepcion devuelve el comando).
     @Override
     public Command parse(String[] commandWords) throws CommandParseException {
 
