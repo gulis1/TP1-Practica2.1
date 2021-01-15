@@ -25,7 +25,7 @@ public class SaveCommand extends Command{
 
         // El archivo se cierra automáticamente al salir del try.
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
-            writer.write(game.serialize());
+            writer.write("Buffy the Vampire Slayer v3.0\n\n" + game.serialize());
 
 
             System.out.println("Game successfully saved.");
