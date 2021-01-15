@@ -16,7 +16,8 @@ public class CommandGenerator {
             new SuperCoinsCommand(),
             new AddVampireCommand(),
             new SerializeCommand(),
-            new SaveCommand()
+            new SaveCommand(),
+            new LoadCommand()
 
     };
 

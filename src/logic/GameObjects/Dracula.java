@@ -12,6 +12,10 @@ public class Dracula extends Vampire {
         draculaAlive = true;
         letra = "D";
     }
+    public Dracula(int x, int y, int hp, boolean shouldMove, Game game){
+        this(x,y,hp,game);
+        this.shouldMove=shouldMove;
+    }
 
     public static boolean isDraculaAlive() {
         return draculaAlive;

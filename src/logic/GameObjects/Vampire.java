@@ -14,6 +14,10 @@ public class Vampire extends GameObject {
         super(x,y,hp,game);
         letra = "V";
     }
+    public Vampire(int x, int y, int hp, boolean shouldMove, Game game){
+        this(x,y,hp,game);
+        this.shouldMove=shouldMove;
+    }
 
     // Resetea el numero de vampiros que han salido.
     public static void resetSpawned() {
@@ -193,5 +197,12 @@ public class Vampire extends GameObject {
     @Override
     public String serialize() {
         return super.serialize() + (shouldMove ? ";1" : ";0");
+    }
+
+    public static void load(int remaining, int onBoard, Game game) {
+        Vampire.total = game.getLevel().numVampirosLv() - remaining;
+        Vampire.onBoard = onBoard;
+
+
     }
 }

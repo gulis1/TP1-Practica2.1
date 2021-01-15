@@ -16,8 +16,8 @@ public class SaveCommand extends Command{
     }
 
     public SaveCommand(String filename){
-       this();
-       this.filename= filename + ".dat";
+        this();
+        this.filename= filename + ".dat";
     }
     //Guarda la partida con el nombre dado por el usuario(pasado por el constructor).
     @Override

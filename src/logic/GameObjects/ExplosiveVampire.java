@@ -8,6 +8,10 @@ public class ExplosiveVampire extends Vampire {
         super(x, y, hp, game);
         letra="EV";
     }
+    public ExplosiveVampire(int x, int y, int hp, boolean shouldMove, Game game){
+        this(x,y,hp,game);
+        this.shouldMove=shouldMove;
+    }
 
     // Hace aparecer un vampiro explosivo (Si toca)
     public static void summon(Game game) {

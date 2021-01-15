@@ -30,6 +30,9 @@ public class Player {
 
         return monedas;
     }
+    public void setMonedas(int coins){
+        this.monedas=coins;
+    }
 
 
 }

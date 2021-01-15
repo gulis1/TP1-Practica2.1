@@ -137,6 +137,54 @@ public class Game implements IPrintable {
 
         return text;
     }
+    public void load(String partida) {
+
+        String[] lista = partida.split("\n");
+
+        int i = 0;
+
+        while(!lista[i].equals("Game Object List:")) {
+            lista[i] = lista[i].split(": ")[1];
+            i++;
+        }
+
+        ciclo = Integer.parseInt(lista[0]);
+        player.setMonedas(Integer.parseInt(lista[1]));
+        level = Level.parse(lista[2]) ;
+        Vampire.load(Integer.parseInt(lista[3]), Integer.parseInt(lista[4]), this);
+
+        i++;
+
+        while(i < lista.length) {
+
+            String[] data = lista[i].split(";");
+
+            switch (data[0]) {
+
+                case "V":
+                    addObject(new Vampire(Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]),Boolean.parseBoolean(data[4]),this));
+                    break;
+
+                case "EV":
+                    addObject(new ExplosiveVampire(Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]),Boolean.parseBoolean(data[4]),this));
+                    break;
+
+                case "D":
+                    addObject(new Dracula(Integer.parseInt(data[1]),Integer.parseInt(data[2]),Integer.parseInt(data[3]),Boolean.parseBoolean(data[4]),this));
+                    break;
+
+
+                case "S":
+                    addObject(new Slayer(Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), this));
+                    break;
+
+                case "B":
+                    addObject(new BloodBank(Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[4]), this));
+            }
+
+            i++;
+        }
+    }
 
     // Sobre escribe el gameOver a true, haciendo que el juego termine.
     public void end() {
