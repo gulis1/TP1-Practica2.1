@@ -13,14 +13,13 @@ public class Player {
     }
     // comprueba si tiene monedas suficientes para comprar un slayer.(si tiene lo compra y le resta la cantidad)
     public void restarMonedas (int x) {
-        boolean suficientes = false;
 
-        if (x <= monedas) {
-            suficientes = true;
+        if (x <= monedas)
             monedas -= x;
-        }
 
     }
+
+
     // añaden monedas segun el rng.
     public void addMonedas(int x) {
         monedas += x;

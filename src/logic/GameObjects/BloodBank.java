@@ -45,7 +45,7 @@ public class BloodBank extends GameObject {
     }
 
     // Se añade un bloodbank de x monedas en la posicion x. Se devuelve un mensaje de error en caso de que ocurra alguno.
-    public static String AddBloodBank(Game game, int x, int y, int inversion, int monedas) throws CommandExecuteException {
+    public static void AddBloodBank(Game game, int x, int y, int inversion, int monedas) throws CommandExecuteException {
         int dimX = game.getLevel().getDimX();
         int dimY = game.getLevel().getDimY();
 
@@ -53,12 +53,10 @@ public class BloodBank extends GameObject {
         if (x >= 0 && x < dimX-1 && y >= 0 && y < dimY && game.isPositionEmpty(x, y)) {
 
             // Hemos puesto que por lo menos se tengan que poner 10 monedas en el bloodbank.
-            if (inversion >= 10 && inversion<=monedas)
+            if (inversion >= 0 && inversion<=monedas)
                 game.addObject(new BloodBank(x, y, inversion, game));
             else
                 throw new NotEnoughCoinsException("Defender",  inversion ,"add bank");
-
-            return null;
         }
 
         else

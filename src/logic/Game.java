@@ -74,14 +74,15 @@ public class Game implements IPrintable {
     }
 
     // Si el jugador tiene las monedas suficientes, ejecuta el LightFlash (y se las resta).
-    public boolean lightFlash() throws CommandExecuteException{
+    public void lightFlash() throws CommandExecuteException{
 
          if (player.getMonedas() >= 50) {
             board.lightFlash();
             player.restarMonedas(50);
         }
 
-        throw new NotEnoughCoinsException("Light", 50 ,"LightFlash");
+        else
+            throw new NotEnoughCoinsException("Light", 50 ,"LightFlash");
 
     }
     //Método que añade  monedas al player.
