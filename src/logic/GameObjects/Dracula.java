@@ -6,7 +6,7 @@ import logic.Game;
 public class Dracula extends Vampire {
 
     private static boolean draculaAlive = false;
-    private String pitA;
+    
 
     public Dracula(int x, int y, int hp, Game game) {
         super(x, y, hp, game);
